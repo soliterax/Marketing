@@ -35,7 +35,7 @@ namespace Marketing.Utils.Managers
         {
             foreach(Base_Classes.User user in users)
             {
-                if (user.user_Name.Equals(value))
+                if (user.user_username.Equals(value))
                     return user.user_Id;
             }
             throw new NullReferenceException();

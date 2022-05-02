@@ -82,10 +82,11 @@ namespace Marketing.Panels
             UserManager um = new UserManager();
             um.LoadSaves();
             Utils.Base_Classes.User user = (Utils.Base_Classes.User)um.GetSave(um.Find(username.Text));
-            if(user.user_Name.Equals(username.Text.ToString()) && user.user_password.Equals(password.Text.ToString()))
+            if(user.user_username.Equals(username.Text.ToString()) && user.user_password.Equals(password.Text.ToString()))
             {
                 Application.OpenForms[0].Controls.Remove(panel);
                 //Open Main Form
+
             }
             
         }

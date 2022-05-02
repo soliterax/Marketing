@@ -79,6 +79,7 @@
       <DependentUpon>Main_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\Login.cs" />
+    <Compile Include="Panels\Main_Panel.cs" />
     <Compile Include="Panels\NavigationBar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
