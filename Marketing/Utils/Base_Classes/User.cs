@@ -20,6 +20,30 @@ namespace Marketing.Utils.Base_Classes
             }
         }
 
+        public string user_username
+        {
+            get
+            {
+                return user_username;
+            }
+            set
+            {
+                user_username = value;
+            }
+        }
+
+        public string user_password
+        {
+            get
+            {
+                return user_password;
+            }
+            set
+            {
+                user_password = value;
+            }
+        }
+
         public string user_Name
         {
             get

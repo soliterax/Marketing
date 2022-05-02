@@ -30,5 +30,15 @@ namespace Marketing.Utils.Managers
         {
             
         }
+
+        public int Find(object value)
+        {
+            foreach(Base_Classes.User user in users)
+            {
+                if (user.user_Name.Equals(value))
+                    return user.user_Id;
+            }
+            throw new NullReferenceException();
+        }
     }
 }

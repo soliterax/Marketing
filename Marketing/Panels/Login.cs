@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marketing.Utils.Managers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -78,6 +79,14 @@ namespace Marketing.Panels
 
         private void Button_Click_Event(object sender, EventArgs e)
         {
+            UserManager um = new UserManager();
+            um.LoadSaves();
+            Utils.Base_Classes.User user = (Utils.Base_Classes.User)um.GetSave(um.Find(username.Text));
+            if(user.user_Name.Equals(username.Text.ToString()) && user.user_password.Equals(password.Text.ToString()))
+            {
+                Application.OpenForms[0].Controls.Remove(panel);
+                //Open Main Form
+            }
             
         }
     }

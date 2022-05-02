@@ -11,6 +11,8 @@ namespace Marketing.Utils.Interfaces
 
         void LoadSaves();
 
+        int Find(object value);
+
         void SaveSaves();
 
         Object GetSave(int id);
