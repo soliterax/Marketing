@@ -28,5 +28,10 @@ namespace Marketing.Utils.Managers
         {
             
         }
+
+        public int Find(object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

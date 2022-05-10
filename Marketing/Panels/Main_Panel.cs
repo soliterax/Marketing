@@ -14,6 +14,20 @@ namespace Marketing.Panels
         Panel panel = new Panel();
         Utils.Base_Classes.User user;
 
+        Panel productList = new Panel();
+        Button addProductButton = new Button();
+        Button removeProductButton = new Button();
+        Button billButton = new Button();
+        Button historyProductBuy = new Button();
+
+        //Yetkili Sınıfları
+        Button indirimButton = new Button();
+        Button promosyonButton = new Button();
+
+        public Main_Panel()
+        {
+
+        }
         public Main_Panel(Utils.Base_Classes.User user)
         {
             this.user = user;
@@ -29,6 +43,16 @@ namespace Marketing.Panels
             panel.Size = size;
             panel.BackColor = Color.Transparent;
             panel.Name = "Main_Panel";
+            panel.Dock = DockStyle.Fill;
+
+            //ProductList Contents
+            productList.Size = new Size((int)(panel.Size.Width * 0.92), (int)(panel.Size.Height * 0.72));
+            productList.Location = new Point((panel.Size.Width / 2) - (productList.Size.Width / 2), (panel.Size.Height / 2) - (productList.Size.Height / 2));
+            productList.Name = "productList";
+            productList.BackColor = Color.Blue;
+            productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+            panel.Controls.Add(productList);
             
         }
 

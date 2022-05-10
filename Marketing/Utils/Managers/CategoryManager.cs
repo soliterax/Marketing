@@ -10,6 +10,11 @@ namespace Marketing.Utils.Managers
     {
         LinkedList<Base_Classes.Category> categories = new LinkedList<Base_Classes.Category>();
 
+        public int Find(object value)
+        {
+            throw new NotImplementedException();
+        }
+
         public object GetSave(int id)
         {
             return null;

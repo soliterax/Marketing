@@ -11,17 +11,16 @@ namespace Marketing.Panels
 {
     public class NavigationBar : Utils.Interfaces.PanelTemplate
     {
+        #region Implemented Classes
         Panel navigation = new Panel();
         PictureBox nav_Image = new PictureBox();
         Label nav_Text = new Label();
         PictureBox nav_Minimize = new PictureBox();
         PictureBox nav_Maximize = new PictureBox();
         PictureBox nav_Shutdown = new PictureBox();
-        public Control GetPanel()
-        {
-            return navigation;
-        }
+        #endregion
 
+        #region Design Panel
         public void InitializeComponents(Size size)
         {
             navigation.Size = new Size(size.Width, (int)(size.Height * 0.06));
@@ -99,27 +98,28 @@ namespace Marketing.Panels
             navigation.Controls.Add(nav_Image);
             navigation.Controls.Add(nav_Text);
         }
+        #endregion
 
-        public void SetPanel(Control control)
-        {
-            this.navigation = (Panel)control;
-        }
-
+        #region Form Move Codes
+        //Farenin bulunduğu yeri tutar
         Point fMouseLocation = Point.Empty;
         private void Start_MoveForm(object sender, MouseEventArgs e)
         {
+            //fare panele basılı tutulduğunda farenin yerini değişkene kaydeder
             if (e.Button == MouseButtons.Left)
                 fMouseLocation = new Point(e.X, e.Y);
         }
 
         private void Stop_MoveForm(object sender, MouseEventArgs e)
         {
+            //Farenin basılı tutması bittiğinde bittiğini kayıt eder
             if (e.Button == MouseButtons.Left)
                 fMouseLocation = Point.Empty;
         }
 
         private void Start_Move(object sender, MouseEventArgs e)
         {
+            //Formu hareket ettirmemizi sağğlar
             if (fMouseLocation != Point.Empty)
                 Application.OpenForms[0].Location = new Point(Application.OpenForms[0].Left + e.X - fMouseLocation.X, Application.OpenForms[0].Top + e.Y - fMouseLocation.Y);
             /*
@@ -129,60 +129,84 @@ namespace Marketing.Panels
                 (mouseLocation.Y > fMouseLocation.Y) ? this.Location.Y + (mouseLocation.Y - fMouseLocation.Y) : this.Location.Y - (fMouseLocation.Y - mouseLocation.Y));
             */
         }
+        #endregion
 
+        #region Panel Component Events
         int slipValue = 5;
-
+        
         //Decrease Size of Button
         private void Button_MouseLeave_Event(object sender, EventArgs e)
         {
+            //Butonun üstünden gidildiğinde orjinal boyutuna döner
             Control enteredButton = ((Control)sender);
             if (enteredButton.Name.Equals("nav_Shutdown") || enteredButton.Name.Equals("nav_Maximize") || enteredButton.Name.Equals("nav_Minimize"))
             {
-                Size s = enteredButton.Size;
                 enteredButton.Size = new Size((int)(navigation.Size.Height * 0.75), (int)(navigation.Size.Height * 0.75));
                 enteredButton.Location = new Point(enteredButton.Location.X + slipValue, (navigation.Size.Height / 2) - (enteredButton.Size.Height / 2));
             }
+            enteredButton = null;
+            GC.Collect();
         }
 
         //Increase Size of button
         private void Button_MouseEnter_Event(object sender, EventArgs e)
         {
+            //Butonun üstüne geldiğinde büyüme animasyonunu verir
             Control enteredButton = ((Control)sender);
             if (enteredButton.Name.Equals("nav_Shutdown") || enteredButton.Name.Equals("nav_Maximize") || enteredButton.Name.Equals("nav_Minimize"))
             {
-                Size s = enteredButton.Size;
                 enteredButton.Size = new Size(navigation.Size.Height, navigation.Size.Height);
                 enteredButton.Location = new Point(enteredButton.Location.X - slipValue, 0);
             }
+            enteredButton = null;
+            GC.Collect();
         }
 
         void Button_Click_Event(object sender, EventArgs args)
         {
+            //Üst bardaki tuşların tıklandığında ne yapıcağını belirler
             try
             {
                 Control clickedButton = ((Control)sender);
                 switch (clickedButton.Name)
                 {
+                    //Programı Kapatıcak olan tuştur
                     case "nav_Shutdown":
                         Application.Exit();
                         break;
+                    //Programı tam ekrana ya da orjinal ekrana getirir
                     case "nav_Maximize":
                         if (Application.OpenForms[0].WindowState == FormWindowState.Normal)
                             Application.OpenForms[0].WindowState = FormWindowState.Maximized;
                         else
                             Application.OpenForms[0].WindowState = FormWindowState.Normal;
                         break;
+                    //Programı alta alır
                     case "nav_Minimize":
                         Application.OpenForms[0].WindowState = FormWindowState.Minimized;
                         break;
+                    //Eğer ki eventte tanımlanmayan bir eleman girerse Uygulama Hatası gönderir
                     default:
-                        break;
+                        throw new ApplicationException();
                 }
             }
             catch (Exception)
             {
+                Console.WriteLine("Error! Object is not button!");
                 return;
             }
+        }
+
+        #endregion
+
+        public Control GetPanel()
+        {
+            return navigation;
+        }
+
+        public void SetPanel(Control control)
+        {
+            this.navigation = (Panel)control;
         }
     }
 }

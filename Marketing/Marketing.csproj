@@ -92,6 +92,7 @@
     <Compile Include="Utils\Interfaces\PanelTemplate.cs" />
     <Compile Include="Utils\Managers\CartManager.cs" />
     <Compile Include="Utils\Managers\CategoryManager.cs" />
+    <Compile Include="Utils\Managers\PanelManager.cs" />
     <Compile Include="Utils\Managers\PermissionManager.cs" />
     <Compile Include="Utils\Managers\ProductManager.cs" />
     <Compile Include="Utils\Managers\UserManager.cs" />
