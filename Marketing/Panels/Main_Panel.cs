@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marketing.Panels.Sub_Panels;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Marketing.Panels
 
         Panel panel = new Panel();
         Utils.Base_Classes.User user;
+
+        AccountPanel ap = new AccountPanel();
 
         Panel productList = new Panel();
         Button addProductButton = new Button();
@@ -35,6 +38,7 @@ namespace Marketing.Panels
 
         public Control GetPanel()
         {
+            GC.Collect();
             return panel;
         }
 
@@ -46,12 +50,14 @@ namespace Marketing.Panels
             panel.Dock = DockStyle.Fill;
 
             //ProductList Contents
-            productList.Size = new Size((int)(panel.Size.Width * 0.92), (int)(panel.Size.Height * 0.72));
-            productList.Location = new Point((panel.Size.Width / 2) - (productList.Size.Width / 2), (panel.Size.Height / 2) - (productList.Size.Height / 2));
+            productList.Size = new Size((int)(panel.Size.Width * 0.48), (int)(panel.Size.Height * 0.82));
+            productList.Location = new Point(22, (panel.Size.Height / 2) - (productList.Size.Height / 2));
             productList.Name = "productList";
             productList.BackColor = Color.Blue;
-            productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
 
+            ap.InitializeComponents(size);
+            panel.Controls.Add(ap.GetPanel());
             panel.Controls.Add(productList);
             
         }

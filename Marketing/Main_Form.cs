@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Marketing
 {
-    public partial class Main_Panel : Form
+    public partial class Main_Form : Form
     {
         protected static int C_Width = Screen.PrimaryScreen.WorkingArea.Width;
         protected static int C_Height = Screen.PrimaryScreen.WorkingArea.Height;
@@ -21,7 +21,7 @@ namespace Marketing
         NavigationBar nav = new NavigationBar();
         Login login = new Login();
 
-        public Main_Panel()
+        public Main_Form()
         {
             InitializeComponent();
             this.Load += Login_Panel_Load;

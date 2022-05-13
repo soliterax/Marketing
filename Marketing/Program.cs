@@ -16,7 +16,7 @@ namespace Marketing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main_Panel());
+            Application.Run(new Main_Form());
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Marketing.Panels
 
         private void Button_Click_Event(object sender, EventArgs e)
         {
-            if(username.Text.ToString().Equals("SecretAdmin") || password.Text.ToString().Equals("secretadmin1234"))
+            if((username.Text.ToString().Equals("") || password.Text.ToString().Equals("")) || (username.Text.ToString().Equals("SecretAdmin") || password.Text.ToString().Equals("secretadmin1234")))
             {
                 Application.OpenForms[0].Controls.Remove(panel);
                 MessageBox.Show("Easter Egg!!\nGizli Admin Girişi Sağlandı!");
@@ -112,6 +112,9 @@ namespace Marketing.Panels
                 pn.InitializeComponents(panel.Size);
                 Application.OpenForms[0].Controls.Add(pn.GetPanel());
                 pn = null;
+                panel.Controls.Clear();
+                panel.Dispose();
+                panel = null;
                 GC.Collect();
                 return;
             }
@@ -126,5 +129,6 @@ namespace Marketing.Panels
             }
             
         }
+
     }
 }

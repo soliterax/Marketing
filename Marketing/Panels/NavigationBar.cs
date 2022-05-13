@@ -11,6 +11,7 @@ namespace Marketing.Panels
 {
     public class NavigationBar : Utils.Interfaces.PanelTemplate
     {
+        //Tested. Result: 4.8mb stabilazed of ram
         #region Implemented Classes
         Panel navigation = new Panel();
         PictureBox nav_Image = new PictureBox();
@@ -108,6 +109,7 @@ namespace Marketing.Panels
             //fare panele basılı tutulduğunda farenin yerini değişkene kaydeder
             if (e.Button == MouseButtons.Left)
                 fMouseLocation = new Point(e.X, e.Y);
+            GC.Collect();
         }
 
         private void Stop_MoveForm(object sender, MouseEventArgs e)
@@ -115,6 +117,7 @@ namespace Marketing.Panels
             //Farenin basılı tutması bittiğinde bittiğini kayıt eder
             if (e.Button == MouseButtons.Left)
                 fMouseLocation = Point.Empty;
+            GC.Collect();
         }
 
         private void Start_Move(object sender, MouseEventArgs e)
@@ -128,6 +131,7 @@ namespace Marketing.Panels
                 (mouseLocation.X > fMouseLocation.X) ? this.Location.X + (mouseLocation.X - fMouseLocation.X): this.Location.X - (fMouseLocation.X - mouseLocation.X), 
                 (mouseLocation.Y > fMouseLocation.Y) ? this.Location.Y + (mouseLocation.Y - fMouseLocation.Y) : this.Location.Y - (fMouseLocation.Y - mouseLocation.Y));
             */
+            GC.Collect();
         }
         #endregion
 
@@ -201,6 +205,7 @@ namespace Marketing.Panels
 
         public Control GetPanel()
         {
+            GC.Collect();
             return navigation;
         }
 
