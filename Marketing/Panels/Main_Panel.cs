@@ -49,7 +49,7 @@ namespace Marketing.Panels
             urun_ekle.Size = new Size((int)(size.Width * 0.05), (int)(size.Width * 0.05));
             urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
             urun_ekle.Name = "urunekleButton";
-            urun_ekle.BackColor = Color.Red;
+            urun_ekle.BackColor = ColorTranslator.FromHtml("#323232");
             urun_ekle.ForeColor = Color.White;
             urun_ekle.FlatStyle = FlatStyle.Flat;
             urun_ekle.Text = "";

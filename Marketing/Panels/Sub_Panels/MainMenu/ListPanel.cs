@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marketing.Framework;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,20 +17,16 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
         Panel rowPanel = new Panel();
 
         Panel navPanel = new Panel();
-        Label count = new Label();
-        Label name = new Label();
-        Label category = new Label();
-        Label price = new Label();
+        CustomLabel count = new CustomLabel();
+        CustomLabel name = new CustomLabel();
+        CustomLabel category = new CustomLabel();
+        CustomLabel price = new CustomLabel();
 
         //Toplam Fiyatı Göstericek olan Panel
         Panel sumPanel = new Panel();
-        Label sumText = new Label();
-        Label sumValue = new Label();
+        CustomLabel sumText = new CustomLabel();
+        CustomLabel sumValue = new CustomLabel();
 
-        //Design Panels
-        Panel draw1 = new Panel();
-        Panel draw2 = new Panel();
-        Panel draw3 = new Panel();
         
         public void InitializeComponents(Size size)
         {
@@ -45,13 +42,13 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             navPanel.Size = new Size(panel.Size.Width, (int)(panel.Size.Height * 0.08));
             navPanel.Location = new Point(0, 0);
             navPanel.Name = "navPanel";
-            navPanel.BackColor = Color.Blue;
+            navPanel.BackColor = ColorTranslator.FromHtml("#404FCF");
 
             //Sum Panel Contents
             sumPanel.Size = new Size((int)(panel.Size.Width / 4), (int)(panel.Size.Height * 0.05));
             sumPanel.Location = new Point(panel.Size.Width - sumPanel.Size.Width, panel.Size.Height - sumPanel.Size.Height);
             sumPanel.Name = "sumPanel";
-            sumPanel.BackColor = Color.Red;
+            sumPanel.BackColor = navPanel.BackColor;
 
             //Content List Panel Contents
             listPanel.Size = new Size(panel.Size.Width, panel.Size.Height - navPanel.Size.Height - sumPanel.Size.Height);
@@ -77,6 +74,8 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             count.Text = "Miktar";
             count.Font = new Font(count.Font.FontFamily, 12);
             count.TextAlign = ContentAlignment.MiddleCenter;
+            count.BorderSize = 3;
+            count.BorderColor = ColorTranslator.FromHtml("#2D2D91");
 
             //Name Label Contents
             name.Size = count.Size;
@@ -87,6 +86,8 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             name.Text = "Ürün Adı";
             name.Font = count.Font;
             name.TextAlign = ContentAlignment.MiddleCenter;
+            name.BorderSize = count.BorderSize;
+            name.BorderColor = count.BorderColor;
 
             //Category Label Contents
             category.Size = count.Size;
@@ -97,6 +98,8 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             category.Text = "Kategori";
             category.Font = count.Font;
             category.TextAlign = ContentAlignment.MiddleCenter;
+            category.BorderSize = count.BorderSize;
+            category.BorderColor = count.BorderColor;
 
             //Price Label Contents
             price.Size = count.Size;
@@ -107,6 +110,8 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             price.Text = "Fiyat";
             price.Font = count.Font;
             price.TextAlign = ContentAlignment.MiddleCenter;
+            price.BorderSize = count.BorderSize;
+            price.BorderColor = count.BorderColor;
             #endregion
 
             #region Sum Panel Contents
@@ -119,6 +124,8 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             sumText.Text = "Toplam: ";
             sumText.Font = count.Font;
             sumText.TextAlign = ContentAlignment.MiddleCenter;
+            sumText.BorderSize = 2;
+            sumText.BorderColor = ColorTranslator.FromHtml("#323232");
 
             //Sum Total Value Contents
             sumValue.Size = sumText.Size;
@@ -129,17 +136,14 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             sumValue.Text = "";
             sumValue.Font = count.Font;
             sumValue.TextAlign = ContentAlignment.MiddleCenter;
+            sumValue.BorderSize = sumText.BorderSize;
+            sumValue.BorderColor = sumText.BorderColor;
             #endregion
-
-            InitializeDesign();
 
             #region Navigation Bar Add Panel Codes
             navPanel.Controls.Add(count);
-            navPanel.Controls.Add(draw1);
             navPanel.Controls.Add(name);
-            navPanel.Controls.Add(draw2);
             navPanel.Controls.Add(category);
-            navPanel.Controls.Add(draw3);
             navPanel.Controls.Add(price);
             #endregion
 
@@ -154,24 +158,6 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
 
         }
 
-        void InitializeDesign()
-        {
-            draw1.Size = new Size((int)(navPanel.Size.Width * 0.01), navPanel.Size.Height);
-            draw1.Location = new Point(count.Size.Width - (draw1.Size.Width / 2), 0);
-            draw1.BackColor = Color.White;
-            draw1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-
-            draw2.Size = draw1.Size;
-            draw2.Location = new Point(name.Location.X + name.Size.Width - (draw2.Size.Width / 2), 0);
-            draw2.BackColor = draw1.BackColor;
-            draw2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-
-            draw3.Size = draw1.Size;
-            draw3.Location = new Point(category.Location.X + category.Size.Width - (draw3.Size.Width / 2), 0);
-            draw3.BackColor = draw1.BackColor;
-            draw3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-
-        }
 
         public Control GetPanel()
         {
