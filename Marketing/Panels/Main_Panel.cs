@@ -1,4 +1,5 @@
 ﻿using Marketing.Panels.Sub_Panels;
+using Marketing.Panels.Sub_Panels.MainMenu;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,17 +17,10 @@ namespace Marketing.Panels
         Utils.Base_Classes.User user;
 
         AccountPanel ap = new AccountPanel();
+        ListPanel lp = new ListPanel();
 
-        Panel productList = new Panel();
-        Button addProductButton = new Button();
-        Button removeProductButton = new Button();
-        Button billButton = new Button();
-        Button historyProductBuy = new Button();
-
-        //Yetkili Sınıfları
-        Button indirimButton = new Button();
-        Button promosyonButton = new Button();
-
+        Button urun_ekle = new Button();
+        Button odeme = new Button();
         public Main_Panel()
         {
 
@@ -49,16 +43,29 @@ namespace Marketing.Panels
             panel.Name = "Main_Panel";
             panel.Dock = DockStyle.Fill;
 
-            //ProductList Contents
-            productList.Size = new Size((int)(panel.Size.Width * 0.48), (int)(panel.Size.Height * 0.82));
-            productList.Location = new Point(22, (panel.Size.Height / 2) - (productList.Size.Height / 2));
-            productList.Name = "productList";
-            productList.BackColor = Color.Blue;
-            productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-
             ap.InitializeComponents(size);
+            lp.InitializeComponents(size);
+
+            urun_ekle.Size = new Size((int)(size.Width * 0.05), (int)(size.Width * 0.05));
+            urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
+            urun_ekle.Name = "urunekleButton";
+            urun_ekle.BackColor = Color.Red;
+            urun_ekle.ForeColor = Color.White;
+            urun_ekle.FlatStyle = FlatStyle.Flat;
+            urun_ekle.Text = "";
+
+            odeme.Size = urun_ekle.Size;
+            odeme.Location = new Point(urun_ekle.Location.X + urun_ekle.Size.Width, urun_ekle.Location.Y);
+            odeme.Name = "odemeButton";
+            odeme.BackColor = urun_ekle.BackColor;
+            odeme.ForeColor = urun_ekle.ForeColor;
+            odeme.FlatStyle = urun_ekle.FlatStyle;
+            odeme.Text = "";
+
             panel.Controls.Add(ap.GetPanel());
-            panel.Controls.Add(productList);
+            panel.Controls.Add(lp.GetPanel());
+            panel.Controls.Add(urun_ekle);
+            panel.Controls.Add(odeme);
             
         }
 

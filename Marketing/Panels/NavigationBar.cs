@@ -40,7 +40,6 @@ namespace Marketing.Panels
             nav_Shutdown.BackColor = Color.Transparent;
             nav_Shutdown.Image = Properties.Resources.shutdown;
             nav_Shutdown.SizeMode = PictureBoxSizeMode.StretchImage;
-            nav_Shutdown.Anchor = AnchorStyles.Right;
             nav_Shutdown.Click += Button_Click_Event;
             nav_Shutdown.MouseEnter += Button_MouseEnter_Event;
             nav_Shutdown.MouseLeave += Button_MouseLeave_Event;
@@ -52,7 +51,6 @@ namespace Marketing.Panels
             nav_Maximize.BackColor = Color.Transparent;
             nav_Maximize.Image = Properties.Resources.maximize;
             nav_Maximize.SizeMode = PictureBoxSizeMode.StretchImage;
-            nav_Maximize.Anchor = AnchorStyles.Right;
             nav_Maximize.Click += Button_Click_Event;
             nav_Maximize.MouseEnter += Button_MouseEnter_Event;
             nav_Maximize.MouseLeave += Button_MouseLeave_Event;
@@ -64,7 +62,6 @@ namespace Marketing.Panels
             nav_Minimize.BackColor = Color.Transparent;
             nav_Minimize.Image = Properties.Resources.minimize;
             nav_Minimize.SizeMode = PictureBoxSizeMode.StretchImage;
-            nav_Minimize.Anchor = AnchorStyles.Right;
             nav_Minimize.Click += Button_Click_Event;
             nav_Minimize.MouseEnter += Button_MouseEnter_Event;
             nav_Minimize.MouseLeave += Button_MouseLeave_Event;
@@ -76,7 +73,6 @@ namespace Marketing.Panels
             nav_Image.BackColor = Color.Transparent;
             nav_Image.Image = Properties.Resources.logo;
             nav_Image.SizeMode = PictureBoxSizeMode.StretchImage;
-            nav_Image.Anchor = AnchorStyles.Left;
 
             //Text Contents
             nav_Text.Size = new Size(navigation.Size.Width - (navigation.Size.Width - nav_Minimize.Location.X - (nav_Image.Location.X + nav_Image.Size.Width + ((int)(navigation.Size.Height * 0.25)))), navigation.Size.Height);
@@ -84,7 +80,6 @@ namespace Marketing.Panels
             nav_Text.Name = "nav_Text";
             nav_Text.BackColor = Color.Transparent;
             nav_Text.ForeColor = Color.White;
-            nav_Text.Anchor = AnchorStyles.Left;
             nav_Text.Text = $"{ConfigurationManager.AppSettings.Get("Name")} - {ConfigurationManager.AppSettings.Get("Version")}";
             nav_Text.TextAlign = ContentAlignment.MiddleLeft;
             nav_Text.Font = new Font(nav_Text.Font.FontFamily, 10);
@@ -184,6 +179,7 @@ namespace Marketing.Panels
                             Application.OpenForms[0].WindowState = FormWindowState.Maximized;
                         else
                             Application.OpenForms[0].WindowState = FormWindowState.Normal;
+                        GC.Collect();
                         break;
                     //Programı alta alır
                     case "nav_Minimize":

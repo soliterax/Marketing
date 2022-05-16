@@ -29,6 +29,7 @@ namespace Marketing
 
         private void Login_Panel_Load(object sender, EventArgs e)
         {
+            //this.SizeChanged += SizeChangedM;
             Main();
         }
         bool maximized = false;
@@ -74,6 +75,11 @@ namespace Marketing
             //Form Add Control
             this.Controls.Add(_nav);
             this.Controls.Add(p);
+        }
+
+        private void SizeChangedM(object sender, EventArgs e)
+        {
+            Utils.Managers.PanelManager.RecalculateControl(this.Size);
         }
 
         

@@ -20,6 +20,8 @@ namespace Marketing.Panels.Sub_Panels
         Label nameText = new Label();
         Label titleText = new Label();
 
+        Image image;
+
         public AccountPanel()
         {
             this.user = new User();
@@ -27,6 +29,7 @@ namespace Marketing.Panels.Sub_Panels
             user.user_Name = "Secret";
             user.user_Surname = "Admin";
             user.user_Id = 0;
+            image = Properties.Resources.Admin;
         }
 
         public AccountPanel(User user)
@@ -38,26 +41,30 @@ namespace Marketing.Panels.Sub_Panels
         {
             panel.Size = new Size((int)(size.Width * 0.20), (int)(size.Height * 0.08));
             panel.Location = new Point(size.Width - panel.Size.Width, Application.OpenForms[0].Controls[0].Size.Height);
-            panel.BackColor = Color.Red;
+            panel.BackColor = Color.Transparent;
             panel.Name = "accountPanel";
             panel.Anchor = AnchorStyles.Right | AnchorStyles.Top;
+            panel.Click += Panel_Click;
 
             accountPhoto.Size = new Size(panel.Size.Height, panel.Size.Height);
             accountPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             accountPhoto.Location = new Point(panel.Size.Width - accountPhoto.Size.Width, 0);
-            accountPhoto.BackColor = Color.Green;
+            accountPhoto.BackColor = Color.Transparent;
             accountPhoto.Name = "accountPhoto";
             accountPhoto.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-            accountPhoto.Image = null;
+            accountPhoto.Image = image;
+            accountPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            accountPhoto.Click += Panel_Click;
 
             nameText.Size = new Size(accountPhoto.Location.X, panel.Size.Height/2);
             nameText.Location = new Point(0, 0);
-            nameText.BackColor = Color.Purple;
+            nameText.BackColor = Color.Transparent;
             nameText.ForeColor = Color.White;
             nameText.Name = "nameText";
             nameText.Text = $"{user.user_Name} {user.user_Surname}";
             nameText.TextAlign = ContentAlignment.MiddleLeft;
             nameText.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            nameText.Click += Panel_Click;
 
             titleText.Size = nameText.Size;
             titleText.Location = new Point(0, nameText.Size.Height);
@@ -67,10 +74,16 @@ namespace Marketing.Panels.Sub_Panels
             titleText.Text = "Tester";
             titleText.TextAlign = ContentAlignment.MiddleLeft;
             titleText.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+            titleText.Click += Panel_Click;
 
             panel.Controls.Add(accountPhoto);
             panel.Controls.Add(nameText);
             panel.Controls.Add(titleText);
+        }
+
+        private void Panel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Menü Gösterilcek Unutma!");
         }
 
         public Control GetPanel()

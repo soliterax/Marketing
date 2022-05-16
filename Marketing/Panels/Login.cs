@@ -33,6 +33,7 @@ namespace Marketing.Panels
             panel.BackColor = Color.Transparent;
             panel.Name = "LoginPanel";
             panel.Dock = DockStyle.Fill;
+            //panel.SizeChanged += (sender, e) => InitializeComponents(panel.Size);
 
             //Username Contents
             username.Size = new Size((size.Width * 20) / 100, (size.Height * 3) / 100);
@@ -41,7 +42,6 @@ namespace Marketing.Panels
             username.BorderStyle = BorderStyle.None;
             username.BackColor = Color.Blue;
             username.ForeColor = Color.White;
-            username.Anchor = AnchorStyles.Right | AnchorStyles.Left;
 
             //Username Label Contents
             usernameText.Size = new Size((int)(size.Width * 0.2), (int)(size.Height * 0.03));
@@ -49,7 +49,6 @@ namespace Marketing.Panels
             usernameText.Name = "usernameText";
             usernameText.BackColor = Color.Transparent;
             usernameText.ForeColor = Color.White;
-            usernameText.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             usernameText.Text = "Username";
 
             //Password Contents
@@ -59,7 +58,6 @@ namespace Marketing.Panels
             password.BorderStyle = BorderStyle.None;
             password.BackColor = Color.Blue;
             password.ForeColor = Color.White;
-            password.Anchor = AnchorStyles.Right | AnchorStyles.Left;
 
             //Password Label Contents
             passwordText.Size = usernameText.Size;
@@ -67,7 +65,6 @@ namespace Marketing.Panels
             passwordText.Name = "passwordText";
             passwordText.BackColor = Color.Transparent;
             passwordText.ForeColor = Color.White;
-            passwordText.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             passwordText.Text = "Password";
 
             //Login Contents
@@ -78,7 +75,6 @@ namespace Marketing.Panels
             login.BackColor = Color.Blue;
             login.ForeColor = Color.White;
             login.Text = "LOGIN";
-            login.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             login.Click += Button_Click_Event;
             login.MouseEnter += Button_MouseEnter_Event;
             login.MouseLeave += Button_MouseLeave_Event;

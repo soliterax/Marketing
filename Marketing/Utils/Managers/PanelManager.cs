@@ -3,42 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Marketing.Utils.Managers
 {
     public class PanelManager
     {
 
-        private Dictionary<string, Marketing.Utils.Interfaces.PanelTemplate> panels = new Dictionary<string, Marketing.Utils.Interfaces.PanelTemplate>();
+        static Dictionary<string, Marketing.Utils.Interfaces.PanelTemplate> panels = new Dictionary<string, Marketing.Utils.Interfaces.PanelTemplate>();
 
         public PanelManager()
         {
 
         }
 
-        public Marketing.Utils.Interfaces.PanelTemplate GetPanel(string panelId)
+        public static Panel GetPanel(string panelId)
         {
-            return panels[panelId];
+            return (Panel)panels[panelId].GetPanel();
         }
 
-        public void AddPanel(string panelId, Marketing.Utils.Interfaces.PanelTemplate panel)
+        public static void AddPanel(string panelId, Marketing.Utils.Interfaces.PanelTemplate panel)
         {
             panels.Add(panelId, panel);
         }
 
-        public Marketing.Utils.Interfaces.PanelTemplate RecalculateControl(System.Windows.Forms.Control panel, System.Drawing.Size formNewSize)
+        public static void RecalculateControl(System.Drawing.Size formNewSize)
         {
-            Marketing.Utils.Interfaces.PanelTemplate _panel = null;
-            foreach(Interfaces.PanelTemplate value in panels.Values)
+            for(int i = 0; i < Application.OpenForms[0].Controls.Count; i++)
             {
-                if(value.GetPanel().Name.Equals(panel.Name.ToString()))
+                switch(Application.OpenForms[0].Controls[i].Name.ToString())
                 {
-                    _panel = value;
-                    break;
+                    case "LoginPanel":
+                        Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[i]);
+                        Marketing.Panels.Login l = new Panels.Login();
+                        l.InitializeComponents(formNewSize);
+                        Application.OpenForms[0].Controls.Add(l.GetPanel());
+                        break;
+                    case "navigation":
+                        Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[i]);
+                        Panels.NavigationBar n = new Panels.NavigationBar();
+                        n.InitializeComponents(formNewSize);
+                        Application.OpenForms[0].Controls.Add(n.GetPanel());
+                        break;
+                    case "Main_Panel":
+                        Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[i]);
+                        Panels.Main_Panel m = new Panels.Main_Panel();
+                        m.InitializeComponents(formNewSize);
+                        Application.OpenForms[0].Controls.Add(m.GetPanel());
+                        break;
+                    default:
+                        Console.WriteLine(Application.OpenForms[0].Controls[i].Name.ToString() + " not found!");
+                        break;
                 }
             }
-            
-            return (_panel != null) ? _panel : null;
         }
 
     }
