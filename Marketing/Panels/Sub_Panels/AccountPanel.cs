@@ -22,6 +22,7 @@ namespace Marketing.Panels.Sub_Panels
 
         Image image;
 
+
         public AccountPanel()
         {
             this.user = new User();
@@ -83,7 +84,8 @@ namespace Marketing.Panels.Sub_Panels
 
         private void Panel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Menü Gösterilcek Unutma!");
+            Application.OpenForms[0].Controls[1].Controls[1].Visible = (Application.OpenForms[0].Controls[1].Controls[1].Visible == true) ? false : true;
+            GC.Collect();
         }
 
         public Control GetPanel()

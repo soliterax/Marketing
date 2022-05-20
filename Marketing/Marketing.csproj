@@ -72,7 +72,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\CustomContextMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Framework\CustomLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Framework\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -84,6 +90,8 @@
     <Compile Include="Panels\Login.cs" />
     <Compile Include="Panels\Main_Panel.cs" />
     <Compile Include="Panels\NavigationBar.cs" />
+    <Compile Include="Panels\Sub_Panels\AccountMenu.cs" />
+    <Compile Include="Panels\Sub_Panels\AccountMenuItem.cs" />
     <Compile Include="Panels\Sub_Panels\AccountPanel.cs" />
     <Compile Include="Panels\Sub_Panels\MainMenu\ListPanel.cs" />
     <Compile Include="Program.cs" />

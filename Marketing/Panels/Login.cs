@@ -121,7 +121,14 @@ namespace Marketing.Panels
             {
                 Application.OpenForms[0].Controls.Remove(panel);
                 //Open Main Form
-
+                Main_Panel pn = new Main_Panel();
+                pn.InitializeComponents(panel.Size);
+                Application.OpenForms[0].Controls.Add(pn.GetPanel());
+                pn = null;
+                panel.Controls.Clear();
+                panel.Dispose();
+                panel = null;
+                GC.Collect();
             }
             
         }

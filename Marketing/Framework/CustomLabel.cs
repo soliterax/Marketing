@@ -13,6 +13,8 @@ namespace Marketing.Framework
     {
         int BORDER_SIZE = 5;
         Color BORDER_COLOR = Color.White;
+        Color TOP_BORDER_COLOR = Color.White;
+
         [Browsable(true)]
         [Category("Extended Properties")]
         [Description("sets Watermark color")]

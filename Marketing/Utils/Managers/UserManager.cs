@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +10,23 @@ namespace Marketing.Utils.Managers
     public class UserManager : Marketing.Utils.Interfaces.ManagerTemplate
     {
 
-        LinkedList<Marketing.Utils.Base_Classes.User> users = new LinkedList<Marketing.Utils.Base_Classes.User>();
-        
+        static LinkedList<Marketing.Utils.Base_Classes.User> users = new LinkedList<Marketing.Utils.Base_Classes.User>();
+        SoliteraxLibrary.SonsuzLock locker = new SoliteraxLibrary.SonsuzLock("h@x+@r", 3);
+        SoliteraxLibrary.SAFile fileStream;
+
         public object GetSave(int id)
         {
-            return null;
+            return users.ToArray()[id];
         }
 
         public void LoadSaves()
         {
-            
+            List<string> files = Directory.GetFiles(Environment.CurrentDirectory + "/Users", "*.user").ToList();
+            foreach(string file in files)
+            {
+                string encodedText = encodeString(file);
+
+            }
         }
 
         public void SaveSaves()
@@ -39,6 +47,12 @@ namespace Marketing.Utils.Managers
                     return user.user_Id;
             }
             throw new NullReferenceException();
+        }
+
+        string encodeString(string value)
+        {
+
+            return null;
         }
     }
 }
