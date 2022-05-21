@@ -12,7 +12,7 @@ namespace Marketing.Panels.Sub_Panels
     public class AccountMenuItem : Utils.Interfaces.PanelTemplate
     {
         CustomPanel panel = new CustomPanel();
-        PictureBox image = new PictureBox();
+        CustomPictureBox image = new CustomPictureBox();
         Label textLabel = new Label();
 
         //Fields
@@ -32,6 +32,8 @@ namespace Marketing.Panels.Sub_Panels
             panel.Size = new Size(size.Width, (int)(size.Height * 0.20));
             panel.Name = "accountMenuItem";
             panel.BackColor = Color.Transparent;
+            panel.Click += Click_Event;
+            panel.borderTopSize = 0;
             
 
             image.Size = new Size((int)(panel.Size.Height * 0.98), (int)(panel.Size.Height * 0.98));
@@ -40,6 +42,7 @@ namespace Marketing.Panels.Sub_Panels
             image.BackColor = BACK_COLOR;
             image.Image = IMAGE;
             image.SizeMode = PictureBoxSizeMode.StretchImage;
+            image.Click += Click_Event;
 
             textLabel.Size = new Size(panel.Size.Width - (image.Size.Width + image.Location.X), (int)(panel.Size.Height * 0.98));
             textLabel.Location = new Point(image.Location.X + image.Size.Width, image.Location.Y);
@@ -47,10 +50,16 @@ namespace Marketing.Panels.Sub_Panels
             textLabel.BackColor = BACK_COLOR;
             textLabel.ForeColor = FONT_COLOR;
             textLabel.Text = ITEM_TEXT;
-            textLabel.TextAlign = ContentAlignment.MiddleCenter;
+            textLabel.TextAlign = ContentAlignment.MiddleLeft;
+            textLabel.Click += Click_Event;
 
             panel.Controls.Add(image);
             panel.Controls.Add(textLabel);
+
+        }
+
+        protected virtual void Click_Event(object sender, EventArgs e)
+        {
 
         }
 

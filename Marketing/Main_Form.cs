@@ -82,6 +82,5 @@ namespace Marketing
             Utils.Managers.PanelManager.RecalculateControl(this.Size);
         }
 
-        
     }
 }

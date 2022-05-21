@@ -12,15 +12,15 @@ namespace Marketing.Framework
     {
 
         //Fields
-        bool BORDER = false;
-        int BORDER_LEFT_SIZE = 1;
-        int BORDER_RIGHT_SIZE = 1;
-        int BORDER_TOP_SIZE = 1;
-        int BORDER_BOTTOM_SIZE = 1;
-        Color BORDER_LEFT_COLOR = Color.White;
-        Color BORDER_RIGHT_COLOR = Color.White;
-        Color BORDER_TOP_COLOR = Color.White;
-        Color BORDER_BOTTOM_COLOR = Color.White;
+        private bool BORDER = false;
+        private int BORDER_LEFT_SIZE = 1;
+        private int BORDER_RIGHT_SIZE = 1;
+        private int BORDER_TOP_SIZE = 1;
+        private int BORDER_BOTTOM_SIZE = 1;
+        private Color BORDER_LEFT_COLOR = Color.White;
+        private Color BORDER_RIGHT_COLOR = Color.White;
+        private Color BORDER_TOP_COLOR = Color.White;
+        private Color BORDER_BOTTOM_COLOR = Color.White;
 
         //Constructor
         public CustomPanel()
@@ -31,11 +31,12 @@ namespace Marketing.Framework
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle,
-                BORDER_LEFT_COLOR, BORDER_LEFT_SIZE, ButtonBorderStyle.Solid,
-                BORDER_TOP_COLOR, BORDER_TOP_SIZE, ButtonBorderStyle.Solid,
-                BORDER_RIGHT_COLOR, BORDER_RIGHT_SIZE, ButtonBorderStyle.Solid,
-                BORDER_BOTTOM_COLOR, BORDER_BOTTOM_SIZE, ButtonBorderStyle.Solid);
+            if(BORDER)
+                ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle,
+                    BORDER_LEFT_COLOR, BORDER_LEFT_SIZE, ButtonBorderStyle.Solid,
+                    BORDER_TOP_COLOR, BORDER_TOP_SIZE, ButtonBorderStyle.Solid,
+                    BORDER_RIGHT_COLOR, BORDER_RIGHT_SIZE, ButtonBorderStyle.Solid,
+                    BORDER_BOTTOM_COLOR, BORDER_BOTTOM_SIZE, ButtonBorderStyle.Solid);
         }
 
         public bool haveBorder
@@ -47,6 +48,21 @@ namespace Marketing.Framework
             set
             {
                 this.BORDER = value;
+            }
+        }
+
+        public int borderSize
+        {
+            get
+            {
+                return this.BORDER_RIGHT_SIZE;
+            }
+            set
+            {
+                this.BORDER_RIGHT_SIZE = value;
+                this.BORDER_LEFT_SIZE = value;
+                this.BORDER_TOP_SIZE = value;
+                this.BORDER_BOTTOM_SIZE = value;
             }
         }
 
@@ -95,6 +111,21 @@ namespace Marketing.Framework
             set
             {
                 this.BORDER_BOTTOM_SIZE = value;
+            }
+        }
+
+        public Color borderColor
+        {
+            get
+            {
+                return this.BORDER_RIGHT_COLOR;
+            }
+            set
+            {
+                this.BORDER_RIGHT_COLOR = value;
+                this.BORDER_LEFT_COLOR = value;
+                this.BORDER_TOP_COLOR = value;
+                this.BORDER_BOTTOM_COLOR = value;
             }
         }
 

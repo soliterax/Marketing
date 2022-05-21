@@ -59,7 +59,7 @@ namespace Marketing.Panels.Sub_Panels
 
             nameText.Size = new Size(accountPhoto.Location.X, panel.Size.Height/2);
             nameText.Location = new Point(0, 0);
-            nameText.BackColor = Color.Transparent;
+            nameText.BackColor = ColorTranslator.FromHtml("#404FCF");
             nameText.ForeColor = Color.White;
             nameText.Name = "nameText";
             nameText.Text = $"{user.user_Name} {user.user_Surname}";

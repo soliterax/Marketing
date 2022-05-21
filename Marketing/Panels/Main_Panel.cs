@@ -1,4 +1,5 @@
-﻿using Marketing.Panels.Sub_Panels;
+﻿using Marketing.Framework;
+using Marketing.Panels.Sub_Panels;
 using Marketing.Panels.Sub_Panels.MainMenu;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace Marketing.Panels
         AccountMenu menu = new AccountMenu();
         ListPanel lp = new ListPanel();
 
-        Button urun_ekle = new Button();
-        Button odeme = new Button();
+        CustomPictureBox urun_ekle = new CustomPictureBox();
+        CustomPictureBox odeme = new CustomPictureBox();
         public Main_Panel()
         {
 
@@ -53,20 +54,26 @@ namespace Marketing.Panels
             _menu.Location = new Point(ap.GetPanel().Location.X, ap.GetPanel().Location.Y + ap.GetPanel().Size.Height);
 
             urun_ekle.Size = new Size((int)(size.Width * 0.05), (int)(size.Width * 0.05));
-            urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
+            urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2 - 10), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
             urun_ekle.Name = "urunekleButton";
             urun_ekle.BackColor = ColorTranslator.FromHtml("#323232");
-            urun_ekle.ForeColor = Color.White;
-            urun_ekle.FlatStyle = FlatStyle.Flat;
-            urun_ekle.Text = "";
+            urun_ekle.Image = Properties.Resources.Cart_Picture;
+            urun_ekle.SizeMode = PictureBoxSizeMode.StretchImage;
+            urun_ekle.haveBorder = true;
+            urun_ekle.borderSize = 1;
+            urun_ekle.borderColor = Color.White;
+            urun_ekle.Click += Button_Click;
 
             odeme.Size = urun_ekle.Size;
-            odeme.Location = new Point(urun_ekle.Location.X + urun_ekle.Size.Width, urun_ekle.Location.Y);
+            odeme.Location = new Point(urun_ekle.Location.X + urun_ekle.Size.Width + 10, urun_ekle.Location.Y);
             odeme.Name = "odemeButton";
             odeme.BackColor = urun_ekle.BackColor;
-            odeme.ForeColor = urun_ekle.ForeColor;
-            odeme.FlatStyle = urun_ekle.FlatStyle;
-            odeme.Text = "";
+            odeme.Image = Properties.Resources.Bill_Picture;
+            odeme.SizeMode = PictureBoxSizeMode.StretchImage;
+            odeme.haveBorder = urun_ekle.haveBorder;
+            odeme.borderSize = urun_ekle.borderSize;
+            odeme.borderColor = urun_ekle.borderColor;
+            odeme.Click += Button_Click;
 
             panel.Controls.Add(ap.GetPanel());
             panel.Controls.Add(_menu);
@@ -74,6 +81,23 @@ namespace Marketing.Panels
             panel.Controls.Add(urun_ekle);
             panel.Controls.Add(odeme);
             
+        }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            Control c = (Control)sender;
+            switch(c.Name.ToString())
+            {
+                case "odemeButton":
+                    MessageBox.Show("Ödemeye basıldı!");
+                    break;
+                case "urunekleButton":
+                    MessageBox.Show("Ürün eklemeye basıldı!");
+                    break;
+                default:
+                    throw new Exception();
+
+            }
         }
 
         public void SetPanel(Control control)

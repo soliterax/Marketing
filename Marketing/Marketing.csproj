@@ -81,6 +81,9 @@
     <Compile Include="Framework\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Framework\CustomPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +95,9 @@
     <Compile Include="Panels\NavigationBar.cs" />
     <Compile Include="Panels\Sub_Panels\AccountMenu.cs" />
     <Compile Include="Panels\Sub_Panels\AccountMenuItem.cs" />
+    <Compile Include="Panels\Sub_Panels\Account_Menu\Logout.cs" />
+    <Compile Include="Panels\Sub_Panels\Account_Menu\ProductEditItem.cs" />
+    <Compile Include="Panels\Sub_Panels\Account_Menu\WorkerEdit.cs" />
     <Compile Include="Panels\Sub_Panels\AccountPanel.cs" />
     <Compile Include="Panels\Sub_Panels\MainMenu\ListPanel.cs" />
     <Compile Include="Program.cs" />
@@ -152,6 +158,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-basket-96.ico" />
+    <None Include="Resources\Cart_Picture.png" />
+    <None Include="Resources\Bill_Picture.png" />
+    <None Include="Resources\Products.png" />
+    <None Include="Resources\Logout.png" />
+    <None Include="Resources\Workers.png" />
     <None Include="Resources\Admin.png" />
     <None Include="Resources\Worker.png" />
     <None Include="Resources\Moderator.png" />
