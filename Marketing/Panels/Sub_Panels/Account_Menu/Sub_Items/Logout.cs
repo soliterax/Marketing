@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace Marketing.Panels.Sub_Panels.Account_Menu
+namespace Marketing.Panels.Sub_Panels.Account_Menu.Sub_Items
 {
     public class Logout : AccountMenuItem
     {

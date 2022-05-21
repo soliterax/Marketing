@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace Marketing.Panels.Sub_Panels.Account_Menu
+namespace Marketing.Panels.Sub_Panels.Account_Menu.Sub_Items
 {
     public class ProductEditItem : AccountMenuItem
     {
@@ -21,7 +21,8 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         protected override void Click_Event(object sender, EventArgs e)
         {
-            MessageBox.Show("Ürün Düzenleme Ekranı Açılacak");
+            Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[1]);
+
         }
     }
 }

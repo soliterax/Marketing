@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Marketing.Panels.Sub_Panels
+namespace Marketing.Panels.Sub_Panels.Account_Menu
 {
     public class AccountMenuItem : Utils.Interfaces.PanelTemplate
     {

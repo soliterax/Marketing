@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Marketing.Utils.Base_Classes;
 using Marketing.Utils.Interfaces;
 
-namespace Marketing.Panels.Sub_Panels
+namespace Marketing.Panels.Sub_Panels.Account_Menu
 {
     public class AccountPanel : PanelTemplate
     {
