@@ -37,7 +37,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
             
 
             image.Size = new Size((int)(panel.Size.Height * 0.98), (int)(panel.Size.Height * 0.98));
-            image.Location = new Point((int)(panel.Size.Height * 0.02) / 2, (int)(panel.Size.Height * 0.02) / 2);
+            image.Location = new Point((int)(panel.Size.Width * 0.08) / 2, (int)(panel.Size.Height * 0.02) / 2);
             image.Name = "image";
             image.BackColor = BACK_COLOR;
             image.Image = IMAGE;
@@ -50,7 +50,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
             textLabel.BackColor = BACK_COLOR;
             textLabel.ForeColor = FONT_COLOR;
             textLabel.Text = ITEM_TEXT;
-            textLabel.TextAlign = ContentAlignment.MiddleLeft;
+            textLabel.TextAlign = ContentAlignment.MiddleCenter;
             textLabel.Click += Click_Event;
 
             panel.Controls.Add(image);

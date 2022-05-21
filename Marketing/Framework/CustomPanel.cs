@@ -10,9 +10,10 @@ namespace Marketing.Framework
 {
     public class CustomPanel : Panel
     {
-
+        
         //Fields
         private bool BORDER = false;
+        private bool HAVEELLIPSE = false;
         private int BORDER_LEFT_SIZE = 1;
         private int BORDER_RIGHT_SIZE = 1;
         private int BORDER_TOP_SIZE = 1;
@@ -21,6 +22,8 @@ namespace Marketing.Framework
         private Color BORDER_RIGHT_COLOR = Color.White;
         private Color BORDER_TOP_COLOR = Color.White;
         private Color BORDER_BOTTOM_COLOR = Color.White;
+        private int BORDER_RADIUS = 30;
+        private EllipseControl ellipse = new EllipseControl();
 
         //Constructor
         public CustomPanel()
@@ -37,6 +40,12 @@ namespace Marketing.Framework
                     BORDER_TOP_COLOR, BORDER_TOP_SIZE, ButtonBorderStyle.Solid,
                     BORDER_RIGHT_COLOR, BORDER_RIGHT_SIZE, ButtonBorderStyle.Solid,
                     BORDER_BOTTOM_COLOR, BORDER_BOTTOM_SIZE, ButtonBorderStyle.Solid);
+            if(HAVEELLIPSE)
+            {
+                ellipse.TargetControl = this;
+                ellipse.CornerRadius = BORDER_RADIUS;
+            }
+
         }
 
         public bool haveBorder
@@ -48,6 +57,18 @@ namespace Marketing.Framework
             set
             {
                 this.BORDER = value;
+            }
+        }
+
+        public bool haveEllipse
+        {
+            get
+            {
+                return this.HAVEELLIPSE;
+            }
+            set
+            {
+                this.HAVEELLIPSE = value;
             }
         }
 
@@ -174,6 +195,18 @@ namespace Marketing.Framework
             set
             {
                 this.BORDER_BOTTOM_COLOR = value;
+            }
+        }
+
+        public int borderRadius
+        {
+            get
+            {
+                return this.BORDER_RADIUS;
+            }
+            set
+            {
+                this.BORDER_RADIUS = value;
             }
         }
     }

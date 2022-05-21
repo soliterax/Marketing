@@ -1,4 +1,5 @@
-﻿using Marketing.Panels;
+﻿using Marketing.Framework;
+using Marketing.Panels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace Marketing
         protected static int C_Height = Screen.PrimaryScreen.WorkingArea.Height;
         protected static string ProgramName = "";
 
+        EllipseControl ellipse = new EllipseControl();
         NavigationBar nav = new NavigationBar();
         Login login = new Login();
 
@@ -60,7 +62,7 @@ namespace Marketing
             this.FormBorderStyle = FormBorderStyle.None;
             this.Size = (maximized) ? new Size(C_Width, C_Height) : new Size((int)(C_Width * 0.8), (int)(C_Height * 0.8));
             this.Location = (maximized) ? new Point(0, 0) : new Point((C_Width / 2) - (this.Size.Width / 2), (C_Height / 2) - (this.Size.Height / 2));
-            this.BackColor = ColorTranslator.FromHtml("#212121");
+            this.BackColor = ColorTranslator.FromHtml("#212121");//ColorTranslator.FromHtml("#9FC2C2"); Aydınlık Temaya bu kod olucak
 
             //Navigation Bar
             nav.InitializeComponents(this.Size);

@@ -25,6 +25,7 @@ namespace Marketing.Panels
             panel.Location = new Point();
             panel.Name = "ProductsPanel";
             panel.BackColor = Color.Transparent;
+            panel.Dock = DockStyle.Fill;
         }
 
         public void SetPanel(Control control)

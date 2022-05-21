@@ -29,7 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
+            this.ellipseControl1 = new Marketing.Framework.EllipseControl();
             this.SuspendLayout();
+            // 
+            // ellipseControl1
+            // 
+            this.ellipseControl1.CornerRadius = 30;
+            this.ellipseControl1.TargetControl = this;
             // 
             // Main_Form
             // 
@@ -44,6 +50,8 @@
         }
 
         #endregion
+
+        private Framework.EllipseControl ellipseControl1;
     }
 }
 
