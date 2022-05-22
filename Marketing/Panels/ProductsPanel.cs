@@ -14,6 +14,8 @@ namespace Marketing.Panels
 
         Panel panel = new Panel();
 
+        
+
         public Control GetPanel()
         {
             return panel;

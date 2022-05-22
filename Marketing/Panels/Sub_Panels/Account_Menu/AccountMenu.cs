@@ -18,22 +18,24 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         public AccountMenu()
         {
+            
+            this.item.AddLast(new Sub_Items.PropertiesItem());
+            this.item.AddLast(new Sub_Items.Logout());
             AddMenuItem(new Sub_Items.WorkerEdit());
             AddMenuItem(new Sub_Items.ProductEditItem());
-            AddMenuItem(new Sub_Items.Logout());
         }
 
         public void SetMenuItems(AccountMenuItem[] accountMenuItems)
         {
             foreach(AccountMenuItem item in accountMenuItems)
             {
-                this.item.AddLast(item);
+                this.item.AddFirst(item);
             }
         }
 
         public void AddMenuItem(AccountMenuItem accountMenuItem)
         {
-            item.AddLast(accountMenuItem);
+            item.AddFirst(accountMenuItem);
         }
 
         public Control GetPanel()

@@ -90,6 +90,7 @@
     <Compile Include="Panels\Sub_Panels\Account_Menu\AccountMenuItem.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\Logout.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\ProductEditItem.cs" />
+    <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\PropertiesItem.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\WorkerEdit.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\AccountPanel.cs" />
     <Compile Include="Panels\Sub_Panels\MainMenu\ListPanel.cs" />
@@ -104,12 +105,6 @@
     <Compile Include="Utils\Base_Classes\User.cs" />
     <Compile Include="Utils\Interfaces\ManagerTemplate.cs" />
     <Compile Include="Utils\Interfaces\PanelTemplate.cs" />
-    <Compile Include="Utils\Managers\CartManager.cs" />
-    <Compile Include="Utils\Managers\CategoryManager.cs" />
-    <Compile Include="Utils\Managers\PanelManager.cs" />
-    <Compile Include="Utils\Managers\PermissionManager.cs" />
-    <Compile Include="Utils\Managers\ProductManager.cs" />
-    <Compile Include="Utils\Managers\UserManager.cs" />
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-basket-96.ico" />
+    <None Include="Resources\SettingsItemImage.png" />
     <None Include="Resources\Cart_Picture.png" />
     <None Include="Resources\Bill_Picture.png" />
     <None Include="Resources\Products.png" />
@@ -176,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\" />
+    <Folder Include="Utils\Managers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

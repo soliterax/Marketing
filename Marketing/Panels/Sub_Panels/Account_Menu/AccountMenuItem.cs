@@ -36,7 +36,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
             panel.borderTopSize = 0;
             
 
-            image.Size = new Size((int)(panel.Size.Height * 0.98), (int)(panel.Size.Height * 0.98));
+            image.Size = new Size((int)(panel.Size.Height * 0.9), (int)(panel.Size.Height * 0.9));
             image.Location = new Point((int)(panel.Size.Width * 0.08) / 2, (int)(panel.Size.Height * 0.02) / 2);
             image.Name = "image";
             image.BackColor = BACK_COLOR;

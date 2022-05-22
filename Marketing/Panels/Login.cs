@@ -14,9 +14,9 @@ namespace Marketing.Panels
     {
         Panel panel = new Panel();
         Label usernameText = new Label();
-        TextBox username = new TextBox();
+        CustomTextBox username = new CustomTextBox();
         Label passwordText = new Label();
-        TextBox password = new TextBox();
+        CustomTextBox password = new CustomTextBox();
         CustomButton login = new CustomButton();
         public Control GetPanel()
         {
@@ -32,7 +32,7 @@ namespace Marketing.Panels
         {
             panel.Size = new Size(size.Width, size.Height);
             panel.Parent = Application.OpenForms[0];
-            panel.BackColor = Color.Transparent;
+            panel.BackColor = Application.OpenForms[0].BackColor;
             panel.Name = "LoginPanel";
             panel.Dock = DockStyle.Fill;
             //panel.SizeChanged += (sender, e) => InitializeComponents(panel.Size);
@@ -42,9 +42,14 @@ namespace Marketing.Panels
             username.Location = new Point((size.Width / 2) - (username.Size.Width / 2), (int)(size.Height * 0.28));
             username.Name = "username";
             username.BorderStyle = BorderStyle.None;
-            username.BackColor = Color.Blue;
+            username.BackColor = Application.OpenForms[0].BackColor;
             username.ForeColor = Color.White;
             username.Parent = panel;
+            username.UnderLineStyle = true;
+            username.BorderColor = Color.Blue;
+            username.BorderSize = 4;
+            username.BorderFocusColor = Color.Cyan;
+            username.TabIndex = 0;
 
             //Username Label Contents
             usernameText.Size = new Size((int)(size.Width * 0.2), (int)(size.Height * 0.03));
@@ -60,9 +65,14 @@ namespace Marketing.Panels
             password.Location = new Point((size.Width / 2) - (password.Size.Width / 2), username.Size.Height + username.Location.Y + (int)(size.Height * 0.08));
             password.Name = "password";
             password.BorderStyle = BorderStyle.None;
-            password.BackColor = Color.Blue;
+            password.BackColor = Application.OpenForms[0].BackColor;
             password.ForeColor = Color.White;
             password.Parent = panel;
+            password.UnderLineStyle = username.UnderLineStyle;
+            password.BorderColor = username.BorderColor;
+            password.BorderSize = username.BorderSize;
+            password.BorderFocusColor = username.BorderFocusColor;
+            password.TabIndex = 1;
 
             //Password Label Contents
             passwordText.Size = usernameText.Size;
@@ -74,7 +84,7 @@ namespace Marketing.Panels
             passwordText.Parent = panel;
 
             //Login Contents
-            login.Size = new Size((int)(username.Size.Width * 0.6), username.Size.Height + 2);
+            login.Size = new Size((int)(username.Size.Width * 0.6), username.Size.Height * 2);
             login.Location = new Point((size.Width / 2) - (login.Size.Width / 2), password.Size.Height + password.Location.Y + (int)(size.Height * 0.08));
             login.Name = "login";
             login.FlatStyle = FlatStyle.Flat;
@@ -83,8 +93,8 @@ namespace Marketing.Panels
             login.Text = "LOGIN";
             login.Parent = panel;
             login.BorderColor = login.BackColor;
-            login.BorderRadius = 15;
-            login.BorderSize = 1;
+            login.BorderRadius = 10;
+            login.BorderSize = 2;
             login.Click += Button_Click_Event;
             login.MouseEnter += Button_MouseEnter_Event;
             login.MouseLeave += Button_MouseLeave_Event;
