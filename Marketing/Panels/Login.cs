@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SoliteraxControlLibrary;
 
 namespace Marketing.Panels
 {
@@ -16,7 +17,7 @@ namespace Marketing.Panels
         TextBox username = new TextBox();
         Label passwordText = new Label();
         TextBox password = new TextBox();
-        Button login = new Button();
+        CustomButton login = new CustomButton();
         public Control GetPanel()
         {
             return panel;
@@ -30,6 +31,7 @@ namespace Marketing.Panels
         public void InitializeComponents(System.Drawing.Size size)
         {
             panel.Size = new Size(size.Width, size.Height);
+            panel.Parent = Application.OpenForms[0];
             panel.BackColor = Color.Transparent;
             panel.Name = "LoginPanel";
             panel.Dock = DockStyle.Fill;
@@ -42,6 +44,7 @@ namespace Marketing.Panels
             username.BorderStyle = BorderStyle.None;
             username.BackColor = Color.Blue;
             username.ForeColor = Color.White;
+            username.Parent = panel;
 
             //Username Label Contents
             usernameText.Size = new Size((int)(size.Width * 0.2), (int)(size.Height * 0.03));
@@ -50,6 +53,7 @@ namespace Marketing.Panels
             usernameText.BackColor = Color.Transparent;
             usernameText.ForeColor = Color.White;
             usernameText.Text = "Username";
+            usernameText.Parent = panel;
 
             //Password Contents
             password.Size = username.Size;
@@ -58,6 +62,7 @@ namespace Marketing.Panels
             password.BorderStyle = BorderStyle.None;
             password.BackColor = Color.Blue;
             password.ForeColor = Color.White;
+            password.Parent = panel;
 
             //Password Label Contents
             passwordText.Size = usernameText.Size;
@@ -66,6 +71,7 @@ namespace Marketing.Panels
             passwordText.BackColor = Color.Transparent;
             passwordText.ForeColor = Color.White;
             passwordText.Text = "Password";
+            passwordText.Parent = panel;
 
             //Login Contents
             login.Size = new Size((int)(username.Size.Width * 0.6), username.Size.Height + 2);
@@ -75,6 +81,10 @@ namespace Marketing.Panels
             login.BackColor = Color.Blue;
             login.ForeColor = Color.White;
             login.Text = "LOGIN";
+            login.Parent = panel;
+            login.BorderColor = login.BackColor;
+            login.BorderRadius = 15;
+            login.BorderSize = 1;
             login.Click += Button_Click_Event;
             login.MouseEnter += Button_MouseEnter_Event;
             login.MouseLeave += Button_MouseLeave_Event;

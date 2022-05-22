@@ -1,4 +1,4 @@
-﻿using Marketing.Framework;
+﻿using SoliteraxControlLibrary;
 using Marketing.Panels.Sub_Panels.Account_Menu;
 using Marketing.Panels.Sub_Panels.MainMenu;
 using System;

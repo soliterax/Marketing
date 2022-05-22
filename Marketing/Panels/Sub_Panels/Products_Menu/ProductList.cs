@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
-using Marketing.Framework;
+using SoliteraxControlLibrary;
 
 namespace Marketing.Panels.Sub_Panels.Products_Menu
 {

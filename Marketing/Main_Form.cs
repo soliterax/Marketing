@@ -1,5 +1,5 @@
-﻿using Marketing.Framework;
-using Marketing.Panels;
+﻿using Marketing.Panels;
+using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,6 @@ namespace Marketing
         protected static int C_Height = Screen.PrimaryScreen.WorkingArea.Height;
         protected static string ProgramName = "";
 
-        EllipseControl ellipse = new EllipseControl();
         NavigationBar nav = new NavigationBar();
         Login login = new Login();
 

@@ -54,6 +54,10 @@
     <StartupObject>Marketing.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SoliteraxControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SonsuzAlgoritma\SoliteraxControlLibrary\bin\Release\SoliteraxControlLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SoliteraxLibrary">
       <HintPath>..\..\..\SonsuzAlgoritma\SonsuzAlgoritma\bin\Release\SoliteraxLibrary.dll</HintPath>
     </Reference>
@@ -72,21 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\CustomContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Framework\CustomLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Framework\CustomPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Framework\CustomPictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Framework\EllipseControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +173,9 @@
       <ProductName>.NET Framework 3.5 SP1 </ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Framework\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

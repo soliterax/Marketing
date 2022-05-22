@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
-            this.ellipseControl1 = new Marketing.Framework.EllipseControl();
+            this.ellipseControl1 = new SoliteraxControlLibrary.EllipseControl();
             this.SuspendLayout();
             // 
             // ellipseControl1
@@ -51,7 +51,7 @@
 
         #endregion
 
-        private Framework.EllipseControl ellipseControl1;
+        private SoliteraxControlLibrary.EllipseControl ellipseControl1;
     }
 }
 
