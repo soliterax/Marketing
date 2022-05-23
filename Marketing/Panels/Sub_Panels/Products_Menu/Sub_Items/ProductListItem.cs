@@ -1,4 +1,5 @@
-﻿using SoliteraxControlLibrary;
+﻿using Marketing.Utils.Base_Classes;
+using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,6 +14,12 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
     {
 
         CustomPanel panel = new CustomPanel();
+
+        private Image PRODUCTIMAGE = null;
+        private Product PRODUCT = null;
+        private Color BACKCOLOR = Color.Transparent;
+        private Color FORECOLOR = Color.White;
+        
 
         PictureBox productImage = new PictureBox();
         Label productName = new Label();
@@ -35,15 +42,15 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             panel.Size = new Size();
             panel.Location = new Point();
             panel.Name = "ProductListItem";
-            panel.BackColor = BACK_COLOR;
+            panel.BackColor = BACKCOLOR;
             panel.MouseEnter += Panel_Enter;
             panel.MouseLeave += Panel_Leave;
 
             productImage.Size = new Size();
             productImage.Location = new Point();
             productImage.Name = "productImage";
-            productImage.BackColor = BACK_COLOR;
-            productImage.Image = ITEM_IMAGE;
+            productImage.BackColor = BACKCOLOR;
+            productImage.Image = PRODUCTIMAGE;
             productImage.SizeMode = PictureBoxSizeMode.StretchImage;
             productImage.MouseEnter += Panel_Enter;
             productImage.MouseLeave += Panel_Leave;
@@ -51,8 +58,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             productName.Size = new Size();
             productName.Location = new Point();
             productName.Name = "productName";
-            productName.BackColor = BACK_COLOR;
-            productName.ForeColor = FONT_COLOR;
+            productName.BackColor = BACKCOLOR;
+            productName.ForeColor = FORECOLOR;
             productName.TextAlign = ContentAlignment.MiddleCenter;
             productName.Text = "";
             productName.MouseEnter += Panel_Enter;
@@ -61,8 +68,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             productCategory.Size = productName.Size;
             productCategory.Location = new Point();
             productCategory.Name = "productCategory";
-            productCategory.BackColor = BACK_COLOR;
-            productCategory.ForeColor = FONT_COLOR;
+            productCategory.BackColor = BACKCOLOR;
+            productCategory.ForeColor = FORECOLOR;
             productCategory.TextAlign = ContentAlignment.MiddleCenter;
             productCategory.Text = "";
             productCategory.MouseEnter += Panel_Enter;
@@ -71,8 +78,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             productKdv.Size = productCategory.Size;
             productKdv.Location = new Point();
             productKdv.Name = "productKdv";
-            productKdv.BackColor = BACK_COLOR;
-            productKdv.ForeColor = FONT_COLOR;
+            productKdv.BackColor = BACKCOLOR;
+            productKdv.ForeColor = FORECOLOR;
             productKdv.TextAlign = ContentAlignment.MiddleCenter;
             productKdv.Text = "";
             productKdv.MouseEnter += Panel_Enter;
@@ -81,8 +88,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             productPrice.Size = productKdv.Size;
             productPrice.Location = new Point();
             productPrice.Name = "productPrice";
-            productPrice.BackColor = BACK_COLOR;
-            productPrice.ForeColor = FONT_COLOR;
+            productPrice.BackColor = BACKCOLOR;
+            productPrice.ForeColor = FORECOLOR;
             productPrice.TextAlign = ContentAlignment.MiddleCenter;
             productPrice.Text = "";
             productPrice.MouseEnter += Panel_Enter;
@@ -92,13 +99,13 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             buttonPanel.Size = panel.Size;
             buttonPanel.Location = new Point(0, 0);
             buttonPanel.Name = "buttonPanel";
-            buttonPanel.BackColor = BACK_COLOR;
+            buttonPanel.BackColor = BACKCOLOR;
             buttonPanel.MouseEnter += Panel_Enter;
             buttonPanel.MouseLeave += Panel_Leave;
 
             edit.Size = new Size();
             edit.Location = new Point();
-            edit.BackColor = BACK_COLOR;
+            edit.BackColor = BACKCOLOR;
             edit.Name = "editButton";
             edit.Image = null;
             edit.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -107,7 +114,7 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
 
             remove.Size = edit.Size;
             remove.Location = new Point();
-            remove.BackColor = BACK_COLOR;
+            remove.BackColor = BACKCOLOR;
             remove.Name = "removeButton";
             remove.Image = null;
             remove.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -137,61 +144,11 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             throw new NotImplementedException();
         }
 
-        //Fields
-        Utils.Base_Classes.Product ITEM;
-        Color BACK_COLOR = Color.Transparent;
-        Color FONT_COLOR = Color.White;
-        Image ITEM_IMAGE = null;
 
-        //Properties
-        public Utils.Base_Classes.Product item
-        {
-            get
-            {
-                return ITEM;
-            }
-            set
-            {
-                this.ITEM = value;
-            }
-        }
+        public Image image { get => PRODUCTIMAGE; set => PRODUCTIMAGE = value; }
+        public Product Product { get => PRODUCT; set => PRODUCT = value; }
+        public Color BackColor { get => BACKCOLOR; set => BACKCOLOR = value; }
+        public Color ForeColor { get => FORECOLOR; set => FORECOLOR = value; }
 
-        public Color backColor
-        {
-            get
-            {
-                return BACK_COLOR;
-            }
-            set
-            {
-                this.BACK_COLOR = value;
-            }
-        }
-
-        public Color fontColor
-        {
-            get
-            {
-                return FONT_COLOR;
-            }
-            set
-            {
-                this.FONT_COLOR = value;
-            }
-        }
-
-        public Image itemImage
-        {
-            get
-            {
-                return ITEM_IMAGE;
-            }
-            set
-            {
-                this.ITEM_IMAGE = value;
-            }
-        }
-
-        
     }
 }

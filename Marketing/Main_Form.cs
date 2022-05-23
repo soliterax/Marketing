@@ -51,6 +51,7 @@ namespace Marketing
         }
         void Main()
         {
+            this.Controls.Clear();
             SetMainContents();
         }
 
@@ -80,7 +81,7 @@ namespace Marketing
 
         private void SizeChangedM(object sender, EventArgs e)
         {
-            Utils.Managers.PanelManager.RecalculateControl(this.Size);
+            //Utils.Managers.PanelManager.RecalculateControl(this.Size);
         }
 
     }

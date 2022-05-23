@@ -1,5 +1,4 @@
-﻿using Marketing.Utils.Managers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -134,6 +133,7 @@ namespace Marketing.Panels
                 GC.Collect();
                 return;
             }
+            /*
             UserManager um = new UserManager();
             um.LoadSaves();
             Utils.Base_Classes.User user = (Utils.Base_Classes.User)um.GetSave(um.Find(username.Text));
@@ -150,7 +150,7 @@ namespace Marketing.Panels
                 panel = null;
                 GC.Collect();
             }
-            
+            */
         }
 
     }

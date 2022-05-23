@@ -54,9 +54,9 @@
     <StartupObject>Marketing.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SoliteraxControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="SoliteraxControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SonsuzAlgoritma\SoliteraxControlLibrary\bin\Release\SoliteraxControlLibrary.dll</HintPath>
+      <HintPath>D:\Coding\C#\source\repos\SonsuzAlgoritma\SoliteraxControlLibrary\bin\Release\SoliteraxControlLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SoliteraxLibrary">
       <HintPath>..\..\..\SonsuzAlgoritma\SonsuzAlgoritma\bin\Release\SoliteraxLibrary.dll</HintPath>
@@ -105,6 +105,7 @@
     <Compile Include="Utils\Base_Classes\User.cs" />
     <Compile Include="Utils\Interfaces\ManagerTemplate.cs" />
     <Compile Include="Utils\Interfaces\PanelTemplate.cs" />
+    <Compile Include="Utils\Managers\ProductManager.cs" />
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-basket-96.ico" />
+    <None Include="Resources\X.png" />
     <None Include="Resources\SettingsItemImage.png" />
     <None Include="Resources\Cart_Picture.png" />
     <None Include="Resources\Bill_Picture.png" />
@@ -172,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\" />
-    <Folder Include="Utils\Managers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

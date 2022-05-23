@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using SoliteraxControlLibrary;
 
 namespace Marketing.Panels
 {
@@ -14,6 +15,7 @@ namespace Marketing.Panels
 
         Panel panel = new Panel();
 
+        Sub_Panels.Products_Menu.ProductList productList = new Sub_Panels.Products_Menu.ProductList();
         
 
         public Control GetPanel()
@@ -23,11 +25,15 @@ namespace Marketing.Panels
 
         public void InitializeComponents(Size size)
         {
-            panel.Size = new Size();
-            panel.Location = new Point();
+            panel.Location = new Point(0, Application.OpenForms[0].Controls[0].Size.Height);
             panel.Name = "ProductsPanel";
             panel.BackColor = Color.Transparent;
             panel.Dock = DockStyle.Fill;
+
+            productList.InitializeComponents(size);
+
+            panel.Controls.Add(productList.GetPanel());
+
         }
 
         public void SetPanel(Control control)
