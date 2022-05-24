@@ -18,8 +18,33 @@ namespace Marketing.Utils.Base_Classes
 
         public string user_Surname;
 
-        public Permissions[] user_Permissions;
+        public string user_Title;
 
         public decimal user_Bill;
+
+        public Permissions[] user_Permissions;
+
+        public override string ToString()
+        {
+            string text = user_Id.ToString() + Environment.NewLine +
+                user_username.ToString() + Environment.NewLine +
+                user_password.ToString() + Environment.NewLine +
+                user_Name.ToString() + Environment.NewLine +
+                user_Surname.ToString() + Environment.NewLine +
+                user_Title.ToString() + Environment.NewLine +
+                user_Bill.ToString();
+
+            foreach(Permissions perm in user_Permissions)
+                text += Environment.NewLine + perm.permission_Id.ToString();
+
+            return text;
+        }
+
+        public bool havePermission(Permissions perm)
+        {
+            
+            return user_Permissions.Contains(perm);
+        }
+
     }
 }

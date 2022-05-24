@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels
 {
@@ -15,21 +16,20 @@ namespace Marketing.Panels
     {
 
         Panel panel = new Panel();
-        Utils.Base_Classes.User user;
+        Utils.Base_Classes.User user = UserManager.loggedUser;
 
-        AccountPanel ap = new AccountPanel();
-        AccountMenu menu = new AccountMenu();
-        ListPanel lp = new ListPanel();
+        AccountPanel ap;
+        AccountMenu menu;
+        ListPanel lp;
 
         CustomPictureBox urun_ekle = new CustomPictureBox();
         CustomPictureBox odeme = new CustomPictureBox();
+        
         public Main_Panel()
         {
-
-        }
-        public Main_Panel(Utils.Base_Classes.User user)
-        {
-            this.user = user;
+            ap = new AccountPanel();
+            menu = new AccountMenu();
+            lp = new ListPanel();
         }
 
         public Control GetPanel()
@@ -40,6 +40,7 @@ namespace Marketing.Panels
 
         public void InitializeComponents(Size size)
         {
+
             panel.Size = size;
             panel.BackColor = Color.Transparent;
             panel.Name = "Main_Panel";

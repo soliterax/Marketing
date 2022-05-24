@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels.Sub_Panels.Account_Menu.Sub_Items
 {

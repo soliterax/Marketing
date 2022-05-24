@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marketing.Utils.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,15 @@ namespace Marketing
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main_Form());
+            Application.ApplicationExit += Application_ApplicationExit;
+        }
+
+        private static void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            UserManager.SaveAllSaves();
+            CategoryManager.SaveAllSaves();
+            ProductManager.SaveAllSaves();
+            PermissionManager.SaveAllSaves();
         }
     }
 }

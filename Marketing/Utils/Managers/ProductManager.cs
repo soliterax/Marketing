@@ -27,14 +27,17 @@ namespace Marketing.Utils.Managers
             foreach(string file in files )
             {
                 SoliteraxFile data = new SoliteraxFile(file);
-                string _data = data.Read();
-                products.AddLast(CalculateAndGetProduct(_data));
+                products.AddLast(CalculateAndGetProduct(data.ReadAllLines()));
             }
         }
 
         public static void SaveAllSaves()
         {
-
+            foreach(Product product in products)
+            {
+                SoliteraxFile file = new SoliteraxFile(path + "/" + product.product_Id + ".product");
+                file.Write(product.ToString());
+            }
         }
 
         public static Product GetProduct(int index)
@@ -47,11 +50,16 @@ namespace Marketing.Utils.Managers
             return products.ToArray();
         }
 
-        static Product CalculateAndGetProduct(string data)
+        static Product CalculateAndGetProduct(string[] data)
         {
 
-
-            return null;
+            Product pr = new Product();
+            pr.product_Id = int.Parse(data[0]);
+            pr.product_Name = data[1];
+            pr.product_Category = CategoryManager.GetCategory(int.Parse(data[2]));
+            pr.product_Price = decimal.Parse(data[3]);
+            
+            return pr;
         }
 
     }

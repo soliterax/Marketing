@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Marketing.Utils.Base_Classes;
 using Marketing.Utils.Interfaces;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels.Sub_Panels.Account_Menu
 {
     public class AccountPanel : PanelTemplate
     {
 
-        User user;
+        User user = UserManager.loggedUser;
 
         Panel panel = new Panel();
         PictureBox accountPhoto = new PictureBox();
@@ -22,20 +23,9 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         Image image;
 
-
         public AccountPanel()
         {
-            this.user = new User();
-            user.user_username = "SecretAdmin";
-            user.user_Name = "Secret";
-            user.user_Surname = "Admin";
-            user.user_Id = 0;
-            image = Properties.Resources.Admin;
-        }
-
-        public AccountPanel(User user)
-        {
-            this.user = user;
+            image = Properties.Resources.Worker;
         }
 
         public void InitializeComponents(Size size)
@@ -72,7 +62,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
             titleText.BackColor = nameText.BackColor;
             titleText.ForeColor = nameText.ForeColor;
             titleText.Name = "titleText";
-            titleText.Text = "Tester";
+            titleText.Text = user.user_Title;
             titleText.TextAlign = ContentAlignment.MiddleLeft;
             titleText.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
             titleText.Click += Panel_Click;

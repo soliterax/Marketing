@@ -56,7 +56,7 @@
   <ItemGroup>
     <Reference Include="SoliteraxControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Coding\C#\source\repos\SonsuzAlgoritma\SoliteraxControlLibrary\bin\Release\SoliteraxControlLibrary.dll</HintPath>
+      <HintPath>..\..\..\SonsuzAlgoritma\SoliteraxControlLibrary\bin\Release\SoliteraxControlLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SoliteraxLibrary">
       <HintPath>..\..\..\SonsuzAlgoritma\SonsuzAlgoritma\bin\Release\SoliteraxLibrary.dll</HintPath>
@@ -105,7 +105,10 @@
     <Compile Include="Utils\Base_Classes\User.cs" />
     <Compile Include="Utils\Interfaces\ManagerTemplate.cs" />
     <Compile Include="Utils\Interfaces\PanelTemplate.cs" />
+    <Compile Include="Utils\Managers\CategoryManager.cs" />
+    <Compile Include="Utils\Managers\PermissionManager.cs" />
     <Compile Include="Utils\Managers\ProductManager.cs" />
+    <Compile Include="Utils\Managers\UserManager.cs" />
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>

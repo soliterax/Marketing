@@ -1,4 +1,6 @@
 ﻿using Marketing.Panels;
+using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Marketing
 {
@@ -19,14 +22,16 @@ namespace Marketing
         protected static int C_Height = Screen.PrimaryScreen.WorkingArea.Height;
         protected static string ProgramName = "";
 
+
         NavigationBar nav = new NavigationBar();
         Login login = new Login();
 
         public Main_Form()
         {
             InitializeComponent();
-            this.Load += Login_Panel_Load;
+            ControlSystem();
         }
+
 
         private void Login_Panel_Load(object sender, EventArgs e)
         {
@@ -37,6 +42,10 @@ namespace Marketing
 
         void Test()
         {
+            MessageBox.Show("ID: " + ProductManager.GetProduct(0).product_Id.ToString() + Environment.NewLine +
+                "Name: " + ProductManager.GetProduct(0).product_Name.ToString() + Environment.NewLine +
+                "Category Name: " + ProductManager.GetProduct(0).product_Category.category_Name.ToString() + Environment.NewLine +
+                "Price: " + ProductManager.GetProduct(0).product_Price.ToString() + " TL");
             /*SoliteraxLibrary.UI.CircularProgressBar progress = new SoliteraxLibrary.UI.CircularProgressBar();
             progress.Progress_Color = Color.Red;
             progress.Progress_TextColor = Color.Red;
@@ -49,6 +58,54 @@ namespace Marketing
 
             this.Controls.Add(progress);*/
         }
+
+        void ControlSystem()
+        {
+            if(!Directory.Exists(Environment.CurrentDirectory + "/Categories"))
+                if(!Directory.Exists(Environment.CurrentDirectory + "/History"))
+                    if(!Directory.Exists(Environment.CurrentDirectory + "/Logs"))
+                        if(!Directory.Exists(Environment.CurrentDirectory + "/Permissions"))
+                            if(!Directory.Exists(Environment.CurrentDirectory + "/Products"))
+                                if(!Directory.Exists(Environment.CurrentDirectory + "/Users"))
+                                {
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/Categories");
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/History");
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/Logs");
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/Permissions");
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/Products");
+                                    Directory.CreateDirectory(Environment.CurrentDirectory + "/Users");
+                                }
+
+            LoadSystem();
+        }
+
+        void LoadSystem()
+        {
+            new PermissionManager();
+            new CategoryManager();
+            new ProductManager();
+            new UserManager();
+            this.Load += Login_Panel_Load;
+            User user = new User();
+            user.user_Id = -1;
+            user.user_username = "SecretAdmin";
+            user.user_password = "secretadmin1234";
+            user.user_Permissions = new Permissions[]
+            {
+                PermissionManager.GetPermission(1),
+                PermissionManager.GetPermission(2),
+                PermissionManager.GetPermission(3),
+                PermissionManager.GetPermission(4),
+                PermissionManager.GetPermission(5),
+                PermissionManager.GetPermission(6)
+            };
+            user.user_Title = "Administrator";
+            user.user_Bill = 0;
+            user.user_Name = "??????";
+            user.user_Surname = "????????";
+            UserManager.loggedUser = user;
+        }
+
         void Main()
         {
             this.Controls.Clear();
@@ -86,3 +143,4 @@ namespace Marketing
 
     }
 }
+//2351 satır

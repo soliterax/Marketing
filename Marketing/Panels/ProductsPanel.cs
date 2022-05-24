@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using SoliteraxControlLibrary;
+using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels
 {
@@ -14,9 +16,13 @@ namespace Marketing.Panels
     {
 
         Panel panel = new Panel();
-
-        Sub_Panels.Products_Menu.ProductList productList = new Sub_Panels.Products_Menu.ProductList();
+        User user = UserManager.loggedUser;
+        Sub_Panels.Products_Menu.ProductList productList;
         
+        public ProductsPanel()
+        {
+            productList = new Sub_Panels.Products_Menu.ProductList(this.user);
+        }
 
         public Control GetPanel()
         {
