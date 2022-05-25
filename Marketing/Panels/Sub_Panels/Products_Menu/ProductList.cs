@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using SoliteraxControlLibrary;
 using Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items;
+using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels.Sub_Panels.Products_Menu
 {
@@ -14,6 +16,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu
     {
 
         LinkedList<Sub_Items.ProductListItem> items = new LinkedList<Sub_Items.ProductListItem>();
+
+        User user = UserManager.loggedUser;
 
         CustomPanel panel = new CustomPanel();
 
@@ -24,12 +28,25 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu
         CustomLabel kdvText = new CustomLabel();
         CustomLabel priceText = new CustomLabel();
 
+        PictureBox addProductButton = new PictureBox();
+
         Panel ListPanel = new Panel();
-        Panel RowPanel = new Panel();
+        CustomPanel RowPanel = new CustomPanel();
         
-        public ProductList()
+        public ProductList(User user)
         {
-            
+            this.user = user;
+            foreach(Product cat in ProductManager.GetAllProducts())
+            {
+                items.AddLast(new ProductListItem(this)
+                {
+                    BackColor = ColorTranslator.FromHtml("#212121"),
+                    ForeColor = Color.White,
+                    Product = cat,
+                    image = null
+                });
+                
+            }
         }
 
         public Control GetPanel()
@@ -122,24 +139,27 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu
             ListPanel.BackColor = Color.Transparent;
             ListPanel.Name = "ListPanel";
 
-            foreach(ProductListItem item in items)
-            {
-                item.InitializeComponents(panel.Size);
-            }
 
             RowPanel.Size = new Size(ListPanel.Size.Width, ((this.items.Count >= 1) ? (this.items.Count * this.items.ToArray()[0].GetPanel().Size.Height) : 0));
-            RowPanel.Location = ListPanel.Location;
+            RowPanel.Location = new Point(0, 0);
             RowPanel.BackColor = ListPanel.BackColor;
             RowPanel.Name = "RowPanel";
 
-            Control _p = items.ToArray()[0].GetPanel();
-            _p.Location = new Point(0, 0);
-            RowPanel.Controls.Add(_p);
-            for(int i = 1; i< items.Count; i++)
+            if (items.Count >= 1)
             {
-                Panel p = (Panel)items.ToArray()[i].GetPanel();
-                p.Location = new Point(0, items.ToArray()[i - 1].GetPanel().Location.Y + items.ToArray()[i - 1].GetPanel().Size.Height);
-                RowPanel.Controls.Add(p);
+                ProductListItem a = items.ToArray()[0];
+                a.InitializeComponents(panel.Size);
+                Panel _p = (Panel)a.GetPanel();
+                _p.Location = new Point(0, 0);
+                RowPanel.Controls.Add(_p);
+                for (int i = 1; i < items.Count; i++)
+                {
+                    ProductListItem item = items.ToArray()[i];
+                    item.InitializeComponents(panel.Size);
+                    Panel p = (Panel)item.GetPanel();
+                    p.Location = new Point(0, items.ToArray()[i - 1].GetPanel().Location.Y + items.ToArray()[i - 1].GetPanel().Size.Height);
+                    RowPanel.Controls.Add(p);
+                }
             }
 
             ListPanel.Controls.Add(RowPanel);

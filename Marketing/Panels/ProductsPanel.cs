@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using SoliteraxControlLibrary;
+using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 
 namespace Marketing.Panels
 {
@@ -14,9 +16,15 @@ namespace Marketing.Panels
     {
 
         Panel panel = new Panel();
+        User user = UserManager.loggedUser;
+        Sub_Panels.Products_Menu.ProductList productList;
 
-        Sub_Panels.Products_Menu.ProductList productList = new Sub_Panels.Products_Menu.ProductList();
+        PictureBox backButton = new PictureBox();
         
+        public ProductsPanel()
+        {
+            productList = new Sub_Panels.Products_Menu.ProductList(this.user);
+        }
 
         public Control GetPanel()
         {
@@ -30,10 +38,23 @@ namespace Marketing.Panels
             panel.BackColor = Color.Transparent;
             panel.Dock = DockStyle.Fill;
 
+            backButton.Size = new Size();
+            backButton.Location = new Point();
+            backButton.Name = "";
+            backButton.BackColor = Color.Transparent;
+            backButton.Image = null;
+            backButton.SizeMode = PictureBoxSizeMode.StretchImage;
+            backButton.Click += Button_Click;
+
             productList.InitializeComponents(size);
 
             panel.Controls.Add(productList.GetPanel());
 
+        }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void SetPanel(Control control)

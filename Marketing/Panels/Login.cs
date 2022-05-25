@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 using SoliteraxControlLibrary;
 
 namespace Marketing.Panels
@@ -17,6 +19,10 @@ namespace Marketing.Panels
         Label passwordText = new Label();
         CustomTextBox password = new CustomTextBox();
         CustomButton login = new CustomButton();
+
+        CustomPanel info = new CustomPanel();
+        PictureBox infoImage = new PictureBox();
+        CustomLabel infoText = new CustomLabel();
         public Control GetPanel()
         {
             return panel;
@@ -44,7 +50,7 @@ namespace Marketing.Panels
             username.BackColor = Application.OpenForms[0].BackColor;
             username.ForeColor = Color.White;
             username.Parent = panel;
-            username.UnderLineStyle = true;
+            username.UnderlinedStyle = true;
             username.BorderColor = Color.Blue;
             username.BorderSize = 4;
             username.BorderFocusColor = Color.Cyan;
@@ -67,11 +73,12 @@ namespace Marketing.Panels
             password.BackColor = Application.OpenForms[0].BackColor;
             password.ForeColor = Color.White;
             password.Parent = panel;
-            password.UnderLineStyle = username.UnderLineStyle;
+            password.UnderlinedStyle = username.UnderlinedStyle;
             password.BorderColor = username.BorderColor;
             password.BorderSize = username.BorderSize;
             password.BorderFocusColor = username.BorderFocusColor;
             password.TabIndex = 1;
+            password.PasswordChar = true;
 
             //Password Label Contents
             passwordText.Size = usernameText.Size;
@@ -83,20 +90,49 @@ namespace Marketing.Panels
             passwordText.Parent = panel;
 
             //Login Contents
-            login.Size = new Size((int)(username.Size.Width * 0.6), username.Size.Height * 2);
+            login.Size = new Size((int)(username.Size.Width * 0.6), username.Size.Height);
             login.Location = new Point((size.Width / 2) - (login.Size.Width / 2), password.Size.Height + password.Location.Y + (int)(size.Height * 0.08));
             login.Name = "login";
             login.FlatStyle = FlatStyle.Flat;
-            login.BackColor = Color.Blue;
+            login.BackColor = Color.Transparent;
             login.ForeColor = Color.White;
             login.Text = "LOGIN";
             login.Parent = panel;
-            login.BorderColor = login.BackColor;
+            login.BorderColor = Color.Blue;
             login.BorderRadius = 10;
             login.BorderSize = 2;
             login.Click += Button_Click_Event;
             login.MouseEnter += Button_MouseEnter_Event;
             login.MouseLeave += Button_MouseLeave_Event;
+
+            //Info Panel Controls
+            info.Size = new Size((int)(size.Width * 0.40), (int)(size.Height * 0.05));
+            info.Location = new Point((size.Width / 2) - (info.Size.Width / 2), usernameText.Location.Y - info.Size.Height - username.Size.Height);
+            info.Name = "info";
+            info.BackColor = Color.Transparent;
+            info.haveBorder = true;
+            info.borderSize = 2;
+            info.borderColor = Color.Red;
+            info.Visible = false;
+
+            infoImage.Size = new Size(info.Size.Height, info.Size.Height);
+            infoImage.Location = new Point(0, 0);
+            infoImage.BackColor = Color.Transparent;
+            infoImage.Image = Properties.Resources.X;
+            infoImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            infoImage.Name = "infoImage";
+
+            infoText.Size = new Size(info.Size.Width - infoImage.Size.Width, info.Size.Height);
+            infoText.Location = new Point(infoImage.Size.Width, 0);
+            infoText.BackColor = Color.Transparent;
+            infoText.ForeColor = Color.Red;
+            infoText.Name = "infoText";
+            infoText.Text = "Kullanıcı Adı veya Şifreniz Yanlış!";
+            infoText.Font = new Font(infoText.Font.FontFamily, 14F);
+            infoText.TextAlign = ContentAlignment.MiddleCenter;
+
+            info.Controls.Add(infoImage);
+            info.Controls.Add(infoText);
 
             //Add Controls
             
@@ -105,21 +141,24 @@ namespace Marketing.Panels
             panel.Controls.Add(password);
             panel.Controls.Add(passwordText);
             panel.Controls.Add(login);
+            panel.Controls.Add(info);
         }
 
         private void Button_MouseLeave_Event(object sender, EventArgs e)
         {
-            
+            login.BackColor = Color.Transparent;
+            GC.Collect();
         }
 
         private void Button_MouseEnter_Event(object sender, EventArgs e)
         {
-            
+            login.BackColor = Color.Blue;
+            GC.Collect();
         }
 
         private void Button_Click_Event(object sender, EventArgs e)
         {
-            if((username.Text.ToString().Equals("") || password.Text.ToString().Equals("")) || (username.Text.ToString().Equals("SecretAdmin") || password.Text.ToString().Equals("secretadmin1234")))
+            if((username.Texts.ToString().Equals("SecretAdmin") || password.Texts.ToString().Equals("secretadmin1234")))
             {
                 Application.OpenForms[0].Controls.Remove(panel);
                 MessageBox.Show("Easter Egg!!\nGizli Admin Girişi Sağlandı!");
@@ -133,14 +172,12 @@ namespace Marketing.Panels
                 GC.Collect();
                 return;
             }
-            /*
-            UserManager um = new UserManager();
-            um.LoadSaves();
-            Utils.Base_Classes.User user = (Utils.Base_Classes.User)um.GetSave(um.Find(username.Text));
-            if(user.user_username.Equals(username.Text.ToString()) && user.user_password.Equals(password.Text.ToString()))
+
+            User user = UserManager.Login(username.Texts, password.Texts);
+
+            if(user != null)
             {
                 Application.OpenForms[0].Controls.Remove(panel);
-                //Open Main Form
                 Main_Panel pn = new Main_Panel();
                 pn.InitializeComponents(panel.Size);
                 Application.OpenForms[0].Controls.Add(pn.GetPanel());
@@ -149,8 +186,12 @@ namespace Marketing.Panels
                 panel.Dispose();
                 panel = null;
                 GC.Collect();
+                return;
             }
-            */
+            else
+            {
+                info.Visible = true;
+            }
         }
 
     }

@@ -11,5 +11,12 @@ namespace Marketing.Utils.Base_Classes
         public int category_Id { get; set; }
         public int KDV { get; set; }
         public string category_Name { get; set; }
+
+        public override string ToString()
+        {
+            return category_Id.ToString() + Environment.NewLine +
+                category_Name.ToString() + Environment.NewLine +
+                KDV.ToString() + Environment.NewLine;
+        }
     }
 }

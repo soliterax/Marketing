@@ -1,4 +1,5 @@
-﻿using SoliteraxControlLibrary;
+﻿using Marketing.Utils.Base_Classes;
+using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,6 +28,7 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
         CustomLabel sumText = new CustomLabel();
         CustomLabel sumValue = new CustomLabel();
 
+        decimal sumTotalPrice = 0;
         
         public void InitializeComponents(Size size)
         {
@@ -158,6 +160,13 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
 
         }
 
+        public void addProduct(Product product)
+        {
+            //ProductItem
+
+            sumTotalPrice += product.product_Price + (product.product_Price * product.product_Category.KDV) / 100;
+            sumValue.Text = sumTotalPrice + " TL";
+        }
 
         public Control GetPanel()
         {

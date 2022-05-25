@@ -93,6 +93,16 @@ namespace Marketing.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap editPictureButton {
+            get {
+                object obj = ResourceManager.GetObject("editPictureButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
@@ -153,6 +163,16 @@ namespace Marketing.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap RemovePictureButton {
+            get {
+                object obj = ResourceManager.GetObject("RemovePictureButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap SettingsItemImage {
             get {
                 object obj = ResourceManager.GetObject("SettingsItemImage", resourceCulture);
@@ -166,6 +186,16 @@ namespace Marketing.Properties {
         internal static System.Drawing.Bitmap shutdown {
             get {
                 object obj = ResourceManager.GetObject("shutdown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap successfulPictureButton {
+            get {
+                object obj = ResourceManager.GetObject("successfulPictureButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

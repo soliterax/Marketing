@@ -1,4 +1,6 @@
-﻿using SoliteraxControlLibrary;
+﻿using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
+using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,13 +18,21 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         CustomPanel panel = new CustomPanel();
 
+
         public AccountMenu()
         {
-            
             this.item.AddLast(new Sub_Items.PropertiesItem());
             this.item.AddLast(new Sub_Items.Logout());
-            AddMenuItem(new Sub_Items.WorkerEdit());
-            AddMenuItem(new Sub_Items.ProductEditItem());
+            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(3)))
+            {
+                AddMenuItem(new Sub_Items.ProductEditItem());
+            }
+            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(6)))
+            {
+                AddMenuItem(new Sub_Items.WorkerEdit());
+            }
+            
+
         }
 
         public void SetMenuItems(AccountMenuItem[] accountMenuItems)
