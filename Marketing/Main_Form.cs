@@ -42,10 +42,10 @@ namespace Marketing
 
         void Test()
         {
-            MessageBox.Show("ID: " + ProductManager.GetProduct(0).product_Id.ToString() + Environment.NewLine +
+            /*MessageBox.Show("ID: " + ProductManager.GetProduct(0).product_Id.ToString() + Environment.NewLine +
                 "Name: " + ProductManager.GetProduct(0).product_Name.ToString() + Environment.NewLine +
                 "Category Name: " + ProductManager.GetProduct(0).product_Category.category_Name.ToString() + Environment.NewLine +
-                "Price: " + ProductManager.GetProduct(0).product_Price.ToString() + " TL");
+                "Price: " + ProductManager.GetProduct(0).product_Price.ToString() + " TL");*/
             /*SoliteraxLibrary.UI.CircularProgressBar progress = new SoliteraxLibrary.UI.CircularProgressBar();
             progress.Progress_Color = Color.Red;
             progress.Progress_TextColor = Color.Red;

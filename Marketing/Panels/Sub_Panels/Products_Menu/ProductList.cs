@@ -28,6 +28,8 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu
         CustomLabel kdvText = new CustomLabel();
         CustomLabel priceText = new CustomLabel();
 
+        
+
         PictureBox addProductButton = new PictureBox();
 
         Panel ListPanel = new Panel();
@@ -167,6 +169,34 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu
             panel.Controls.Add(navigationBar);
             panel.Controls.Add(ListPanel);
 
+        }
+
+        internal void AddProduct(Product sender)
+        {
+            if (ProductManager.GetAllProducts().Length >= 1)
+                sender.product_Id = ProductManager.GetAllProducts()[ProductManager.GetAllProducts().Length - 1].product_Id + 1;
+            else
+                sender.product_Id = 1;
+            ProductManager.AddProduct(sender);
+            ProductListItem item = new ProductListItem(this)
+            {
+                BackColor = ColorTranslator.FromHtml("#212121"),
+                ForeColor = Color.White,
+                Product = sender,
+                image = null
+            };
+
+            item.InitializeComponents(panel.Size);
+
+            RowPanel.Size = new Size(RowPanel.Size.Width, RowPanel.Size.Height + item.GetPanel().Size.Height);
+            Control c = item.GetPanel();
+            if (RowPanel.Controls.Count >= 1)
+                c.Location = new Point(0, RowPanel.Controls[RowPanel.Controls.Count - 1].Location.Y + RowPanel.Controls[RowPanel.Controls.Count - 1].Size.Height);
+            else
+                c.Location = new Point(0, 0);
+            RowPanel.Controls.Add(c);
+            items.AddLast(item);
+            GC.Collect();
         }
 
         public void SetPanel(Control control)

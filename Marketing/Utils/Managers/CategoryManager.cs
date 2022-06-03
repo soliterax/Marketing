@@ -31,6 +31,11 @@ namespace Marketing.Utils.Managers
             }
         }
 
+        public static Category[] GetAllCategories()
+        {
+            return items.ToArray();
+        }
+
         public static void SaveAllSaves()
         {
             foreach(Category item in items)

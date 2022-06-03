@@ -56,10 +56,11 @@ namespace Marketing.Panels
             addWorkerButton.Size = new Size((int)(panel.Size.Height * 0.5), (int)(panel.Size.Height * 0.5));
             addWorkerButton.Location = new Point(((workerList.GetPanel().Location.X + workerList.GetPanel().Size.Width) / 2) - (addWorkerButton.Size.Width / 2) + 30, workerList.GetPanel().Location.Y + workerList.GetPanel().Size.Height + 20);
             addWorkerButton.Name = "addWorkerButton";
-            addWorkerButton.BackColor = Color.Blue;
-            addWorkerButton.Image = null;
+            addWorkerButton.BackColor = panel.BackColor;
+            addWorkerButton.Image = Properties.Resources.AddImage;
             addWorkerButton.SizeMode = PictureBoxSizeMode.StretchImage;
-            addWorkerButton.Click += Button_Click;
+            if(UserManager.loggedUser.havePermission(PermissionManager.GetPermission(5)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
+                addWorkerButton.Click += Button_Click;
 
             panel.Controls.Add(backButton);
             panel.Controls.Add(addWorkerButton);

@@ -1,4 +1,5 @@
 ﻿using Marketing.Utils.Base_Classes;
+using Marketing.Utils.Managers;
 using SoliteraxControlLibrary;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
 
         //Toplam Fiyatı Göstericek olan Panel
         Panel sumPanel = new Panel();
+        TrackBar bar = new TrackBar();
         CustomLabel sumText = new CustomLabel();
         CustomLabel sumValue = new CustomLabel();
 
@@ -38,7 +40,7 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             panel.Size = new Size((int)(size.Width * 0.85), (int)(size.Height * 0.72));
             panel.Location = new Point((size.Width / 2)-(panel.Size.Width / 2), (size.Height / 2) - (panel.Size.Height / 2));
             panel.Name = "ListPanel";
-            panel.BackColor = Color.Transparent;
+            panel.BackColor = ColorTranslator.FromHtml("#212121");
 
             //Navigation Panel Contents
             navPanel.Size = new Size(panel.Size.Width, (int)(panel.Size.Height * 0.08));
@@ -59,7 +61,7 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             listPanel.BackColor = Color.Transparent;
 
             //Row Panel Contents
-            rowPanel.Size = listPanel.Size;
+            rowPanel.Size = new Size(listPanel.Size.Width, 0);
             rowPanel.Location = listPanel.Location;
             rowPanel.Name = "rowPanel";
             rowPanel.BackColor = Color.Transparent;
@@ -142,6 +144,24 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             sumValue.BorderColor = sumText.BorderColor;
             #endregion
 
+            bar.Size = sumPanel.Size;
+            bar.Location = new Point(sumPanel.Location.X - bar.Size.Width, sumPanel.Location.Y);
+            bar.Name = "bar";
+            bar.BackColor = Color.Red;
+            bar.Visible = false;
+            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(2)) && UserManager.loggedUser.havePermission(PermissionManager.GetPermission(3)))
+            {
+                bar.Maximum = 20;
+                sumValue.Click += Bar_Click;
+            }
+            else if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
+            {
+                bar.Maximum = 100;
+                sumValue.Click += Bar_Click;
+            }
+            bar.Value = bar.Maximum;
+            bar.Scroll += Bar_Scroll;
+
             #region Navigation Bar Add Panel Codes
             navPanel.Controls.Add(count);
             navPanel.Controls.Add(name);
@@ -157,15 +177,58 @@ namespace Marketing.Panels.Sub_Panels.MainMenu
             panel.Controls.Add(navPanel);
             panel.Controls.Add(listPanel);
             panel.Controls.Add(sumPanel);
+            panel.Controls.Add(bar);
 
+        }
+
+        private void Bar_Click(object sender, EventArgs e)
+        {
+            bar.Visible = true;
+        }
+        decimal existPrice = 0;
+        private void Bar_Scroll(object sender, EventArgs e)
+        {
+            existPrice = (sumTotalPrice * bar.Value) / 100;
+            sumValue.Text = existPrice.ToString() + " TL";
+        }
+
+        public void payJesusCrysis()
+        {
+            rowPanel.Size = new Size(listPanel.Size.Width, 0);
+            rowPanel.Controls.Clear();
+            sumValue.Text = "Payed!";
+            sumTotalPrice = 0;
         }
 
         public void addProduct(Product product)
         {
             //ProductItem
 
+            ListPanelItem item = new ListPanelItem()
+            {
+                product = product,
+                backColor = ColorTranslator.FromHtml("#212121"),
+                foreColor = Color.White
+            };
+
+            item.InitializeComponents(panel.Size);
+
+            rowPanel.Size = new Size(rowPanel.Size.Width, rowPanel.Size.Height + item.GetPanel().Size.Height);
+            Control c = item.GetPanel();
+            if (rowPanel.Controls.Count >= 1)
+                c.Location = new Point(0, rowPanel.Controls[rowPanel.Controls.Count - 1].Location.Y + rowPanel.Controls[rowPanel.Controls.Count - 1].Size.Height);
+            else
+                c.Location = new Point(0, 0);
+
+            rowPanel.Controls.Add(c);
+
             sumTotalPrice += product.product_Price + (product.product_Price * product.product_Category.KDV) / 100;
             sumValue.Text = sumTotalPrice + " TL";
+        }
+
+        public decimal getTotalPrice()
+        {
+            return sumTotalPrice;
         }
 
         public Control GetPanel()

@@ -93,7 +93,9 @@
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\PropertiesItem.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\WorkerEdit.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\AccountPanel.cs" />
+    <Compile Include="Panels\Sub_Panels\MainMenu\CartAddItem.cs" />
     <Compile Include="Panels\Sub_Panels\MainMenu\ListPanel.cs" />
+    <Compile Include="Panels\Sub_Panels\MainMenu\ListPanelItem.cs" />
     <Compile Include="Panels\Sub_Panels\Products_Menu\ProductAddPanel.cs" />
     <Compile Include="Panels\Sub_Panels\Products_Menu\ProductList.cs" />
     <Compile Include="Panels\Sub_Panels\Products_Menu\Sub_Items\ProductListItem.cs" />
@@ -159,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-basket-96.ico" />
+    <None Include="Resources\AddImage.png" />
     <None Include="Resources\BackButton.png" />
     <None Include="Resources\successfulPictureButton.png" />
     <None Include="Resources\RemovePictureButton.png" />

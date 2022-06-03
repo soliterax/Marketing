@@ -17,6 +17,7 @@ namespace Marketing.Panels
 
         Panel panel = new Panel();
         Utils.Base_Classes.User user = UserManager.loggedUser;
+        CartAddItem cartadd = new CartAddItem();
 
         AccountPanel ap;
         
@@ -48,6 +49,9 @@ namespace Marketing.Panels
             ap.InitializeComponents(size);
             lp.InitializeComponents(size);
 
+            cartadd.InitializeComponents(lp.GetPanel().Size);
+            cartadd.addItem += Cartadd_addItem;
+            cartadd.GetPanel().Visible = false;
 
             urun_ekle.Size = new Size((int)(size.Width * 0.05), (int)(size.Width * 0.05));
             urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2 - 10), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
@@ -84,15 +88,22 @@ namespace Marketing.Panels
             switch(c.Name.ToString())
             {
                 case "odemeButton":
-                    MessageBox.Show("Ödemeye basıldı!");
+                    lp.payJesusCrysis();
                     break;
                 case "urunekleButton":
-                    MessageBox.Show("Ürün eklemeye basıldı!");
+                    cartadd.GetPanel().Visible = true;
+                    panel.Controls.Add(cartadd.GetPanel());
+                    panel.Controls[panel.Controls.Count - 1].BringToFront();
                     break;
                 default:
                     throw new Exception();
 
             }
+        }
+
+        private void Cartadd_addItem(object sender, EventArgs e)
+        {
+            lp.addProduct(ProductManager.GetProduct((int)sender));
         }
 
         public void SetPanel(Control control)

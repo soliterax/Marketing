@@ -214,7 +214,7 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu.Sub_Items
             tx_userPassword.UnderlinedStyle = tx_userName.UnderlinedStyle;
 
             //Events
-            if (user.havePermission(PermissionManager.GetPermission(4)) || user.havePermission(PermissionManager.GetPermission(5)))
+            if (user.havePermission(PermissionManager.GetPermission(4)) || user.havePermission(PermissionManager.GetPermission(5)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
             {
                 panel.Click += Panel_Enter;
                 userImage.Click += Panel_Enter;
@@ -268,7 +268,6 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu.Sub_Items
 
         private void Panel_Enter(object sender, EventArgs e)
         {
-
             switch (((Control)sender).Name)
             {
                 case "editButton":
@@ -280,7 +279,10 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu.Sub_Items
                     return;
                 case "removeButton":
                     if (user.havePermission(PermissionManager.GetPermission(6)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
-                        MessageBox.Show("Silmeye Basıldı!");
+                    {
+                        UserManager.RemoveUser(WORKER);
+                        changedValues.Invoke(null, null);
+                    }
                     return;
                 case "editPanelSave":
                     if(!tx_userName.Texts.Equals(string.Empty))
@@ -313,6 +315,8 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu.Sub_Items
             else
                 buttonPanel.Visible = true;
         }
+
+        public event EventHandler changedValues;
 
 
         public Image image

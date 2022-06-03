@@ -35,16 +35,51 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
 
         public WorkerList()
         {
+            Load();
+        }
+
+        void Load()
+        {
+            items.Clear();
             foreach (User cat in UserManager.GetAllUsers())
             {
-                items.AddLast(new WorkerListItem(this)
+                WorkerListItem item = new WorkerListItem(this)
                 {
                     BackColor = ColorTranslator.FromHtml("#212121"),
                     ForeColor = Color.White,
                     Worker = cat,
                     image = null
-                });
+                };
+                item.changedValues += Item_changedValues;
+                items.AddLast(item);
+            }
+        }
 
+        private void Item_changedValues(object sender, EventArgs e)
+        {
+            RowPanel.Controls.Clear();
+            Load();
+            AddItems();
+        }
+
+        void AddItems()
+        {
+            if (items.Count >= 1)
+            {
+                WorkerListItem a = items.ToArray()[0];
+                a.SaveUser += A_SaveUser;
+                a.InitializeComponents(panel.Size);
+                Panel _p = (Panel)a.GetPanel();
+                _p.Location = new Point(0, 0);
+                RowPanel.Controls.Add(_p);
+                for (int i = 1; i < items.Count; i++)
+                {
+                    WorkerListItem item = items.ToArray()[i];
+                    item.InitializeComponents(panel.Size);
+                    Panel p = (Panel)item.GetPanel();
+                    p.Location = new Point(0, items.ToArray()[i - 1].GetPanel().Location.Y + items.ToArray()[i - 1].GetPanel().Size.Height);
+                    RowPanel.Controls.Add(p);
+                }
             }
         }
 
@@ -63,6 +98,11 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
             panel.borderSize = 2;
             panel.haveBorder = true;
 
+            InitializeContents();
+        }
+
+        public void InitializeContents()
+        {
             navigationBar.Size = new Size(panel.Size.Width, (int)(panel.Size.Height * 0.08));
             navigationBar.Location = new Point(0, 0);
             navigationBar.BackColor = ColorTranslator.FromHtml("#404FCF");
@@ -144,29 +184,12 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
             RowPanel.BackColor = ListPanel.BackColor;
             RowPanel.Name = "RowPanel";
 
-            if (items.Count >= 1)
-            {
-                WorkerListItem a = items.ToArray()[0];
-                a.SaveUser += A_SaveUser;
-                a.InitializeComponents(panel.Size);
-                Panel _p = (Panel)a.GetPanel();
-                _p.Location = new Point(0, 0);
-                RowPanel.Controls.Add(_p);
-                for (int i = 1; i < items.Count; i++)
-                {
-                    WorkerListItem item = items.ToArray()[i];
-                    item.InitializeComponents(panel.Size);
-                    Panel p = (Panel)item.GetPanel();
-                    p.Location = new Point(0, items.ToArray()[i - 1].GetPanel().Location.Y + items.ToArray()[i - 1].GetPanel().Size.Height);
-                    RowPanel.Controls.Add(p);
-                }
-            }
+            AddItems();
 
             ListPanel.Controls.Add(RowPanel);
 
             panel.Controls.Add(navigationBar);
             panel.Controls.Add(ListPanel);
-
         }
 
         private void A_SaveUser(object sender, EventArgs e)
@@ -176,7 +199,10 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
 
         public void AddUser(User user)
         {
-            user.user_Id = UserManager.GetAllUsers().ToArray()[UserManager.GetAllUsers().Count() - 1].user_Id + 1;
+            if (UserManager.GetAllUsers().ToArray().Length >= 1)
+                user.user_Id = UserManager.GetAllUsers().ToArray()[UserManager.GetAllUsers().Count() - 1].user_Id + 1;
+            else
+                user.user_Id = 1;
             UserManager.AddUser(user);
             WorkerListItem item = new WorkerListItem(this)
             {
@@ -189,7 +215,10 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
 
             RowPanel.Size = new Size(RowPanel.Size.Width, RowPanel.Size.Height + item.GetPanel().Size.Height);
             Control c = item.GetPanel();
-            c.Location = new Point(0, RowPanel.Controls[RowPanel.Controls.Count - 1].Location.Y + RowPanel.Controls[RowPanel.Controls.Count - 1].Size.Height);
+            if (RowPanel.Controls.Count >= 1)
+                c.Location = new Point(0, RowPanel.Controls[RowPanel.Controls.Count - 1].Location.Y + RowPanel.Controls[RowPanel.Controls.Count - 1].Size.Height);
+            else
+                c.Location = new Point(0, 0);
             RowPanel.Controls.Add(c);
             items.AddLast(item);
             GC.Collect();

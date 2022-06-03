@@ -21,6 +21,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu.Sub_Items
 
         protected override void Click_Event(object sender, EventArgs e)
         {
+            Application.OpenForms[0].Controls[1].Dispose();
             Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[1]);
             Login login = new Login();
             login.InitializeComponents(Application.OpenForms[0].Size);

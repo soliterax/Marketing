@@ -88,5 +88,9 @@ namespace Marketing.Utils.Managers
             return pr;
         }
 
+        internal static void AddProduct(Product sender)
+        {
+            products.AddLast(sender);
+        }
     }
 }

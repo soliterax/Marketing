@@ -131,7 +131,7 @@ namespace Marketing.Panels.Sub_Panels.Workers_Menu
             tx_permission.ForeColor = Color.White;
             tx_permission.Font = new Font(addButton.Font.FontFamily, 12);
             tx_permission.TextAlign = ContentAlignment.MiddleCenter;
-            tx_permission.Text = "PermissionsButton";
+            tx_permission.Text = "Set Permissions";
             tx_permission.BorderSize = 2;
             tx_permission.BorderColor = addButton.ForeColor;
             tx_permission.BorderRadius = 20;

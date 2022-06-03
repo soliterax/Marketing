@@ -80,6 +80,16 @@ namespace Marketing.Utils.Managers
             items.AddLast(user);
         }
 
+        public static void RemoveUser(User user)
+        {
+            foreach(User value in items.ToArray())
+            {
+                if (value.user_Id == user.user_Id)
+                    items.Remove(value);
+            }
+            File.Delete(path + "/" + user.user_Id.ToString() + ".user");
+        }
+
         public static User GetUser(int id)
         {
             foreach(User s in items)
