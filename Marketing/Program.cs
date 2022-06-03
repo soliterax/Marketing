@@ -23,10 +23,7 @@ namespace Marketing
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {
-            UserManager.SaveAllSaves();
-            CategoryManager.SaveAllSaves();
-            ProductManager.SaveAllSaves();
-            PermissionManager.SaveAllSaves();
+            
         }
     }
 }

@@ -215,7 +215,7 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             tx_productPrice.UnderlinedStyle = tx_productName.UnderlinedStyle;
 
             //Events
-            if (user.havePermission(PermissionManager.GetPermission(4)) || user.havePermission(PermissionManager.GetPermission(5)))
+            if (user.havePermission(PermissionManager.GetPermission(2)) || user.havePermission(PermissionManager.GetPermission(3)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
             {
                 panel.Click += Panel_Enter;
                 productImage.Click += Panel_Enter;
@@ -271,14 +271,14 @@ namespace Marketing.Panels.Sub_Panels.Products_Menu.Sub_Items
             switch(((Control)sender).Name)
             {
                 case "editButton":
-                    if (user.havePermission(PermissionManager.GetPermission(4)) && user.havePermission(PermissionManager.GetPermission(5)))
+                    if ((user.havePermission(PermissionManager.GetPermission(2)) && user.havePermission(PermissionManager.GetPermission(3))) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
                     {
                         buttonPanel.Visible = false;
                         editPanel.Visible = true;
                     }    
                     return;
                 case "removeButton":
-                    if(user.havePermission(PermissionManager.GetPermission(4)))
+                    if(user.havePermission(PermissionManager.GetPermission(3)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
                         MessageBox.Show("Silmeye Basıldı!");
                     return;
                 case "editPanelSave":

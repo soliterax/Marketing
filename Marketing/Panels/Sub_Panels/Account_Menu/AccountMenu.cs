@@ -23,11 +23,11 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
         {
             this.item.AddLast(new Sub_Items.PropertiesItem());
             this.item.AddLast(new Sub_Items.Logout());
-            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(3)))
+            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(1)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
             {
                 AddMenuItem(new Sub_Items.ProductEditItem());
             }
-            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(6)))
+            if (UserManager.loggedUser.havePermission(PermissionManager.GetPermission(4)) || UserManager.loggedUser.havePermission(PermissionManager.GetPermission(-1)))
             {
                 AddMenuItem(new Sub_Items.WorkerEdit());
             }

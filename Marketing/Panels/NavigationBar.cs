@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marketing.Utils.Managers;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
@@ -171,6 +172,10 @@ namespace Marketing.Panels
                 {
                     //Programı Kapatıcak olan tuştur
                     case "nav_Shutdown":
+                        UserManager.SaveAllSaves();
+                        CategoryManager.SaveAllSaves();
+                        ProductManager.SaveAllSaves();
+                        PermissionManager.SaveAllSaves();
                         Application.Exit();
                         break;
                     //Programı tam ekrana ya da orjinal ekrana getirir

@@ -21,7 +21,12 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu.Sub_Items
 
         protected override void Click_Event(object sender, EventArgs e)
         {
-            MessageBox.Show("İşçiler ekranı açılacak!");
+            Application.OpenForms[0].Controls[1].Dispose();
+            Application.OpenForms[0].Controls.Remove(Application.OpenForms[0].Controls[1]);
+            WorkersPanel p = new WorkersPanel();
+            p.InitializeComponents(Application.OpenForms[0].Size);
+            Application.OpenForms[0].Controls.Add(p.GetPanel());
+            GC.Collect();
         }
     }
 }

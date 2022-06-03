@@ -22,7 +22,7 @@ namespace Marketing.Utils.Base_Classes
 
         public decimal user_Bill;
 
-        public Permissions[] user_Permissions;
+        public Permissions[] user_Permissions = new List<Permissions>().ToArray();
 
         public override string ToString()
         {

@@ -40,6 +40,7 @@ namespace Marketing.Panels
             panel.BackColor = Application.OpenForms[0].BackColor;
             panel.Name = "LoginPanel";
             panel.Dock = DockStyle.Fill;
+            Application.OpenForms[0].AcceptButton = login;
             //panel.SizeChanged += (sender, e) => InitializeComponents(panel.Size);
 
             //Username Contents
@@ -170,6 +171,7 @@ namespace Marketing.Panels
                 panel.Dispose();
                 panel = null;
                 GC.Collect();
+                Application.OpenForms[0].AcceptButton = null;
                 return;
             }
 
@@ -186,6 +188,7 @@ namespace Marketing.Panels
                 panel.Dispose();
                 panel = null;
                 GC.Collect();
+                Application.OpenForms[0].AcceptButton = null;
                 return;
             }
             else

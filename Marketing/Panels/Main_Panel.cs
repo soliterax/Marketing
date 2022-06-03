@@ -19,7 +19,7 @@ namespace Marketing.Panels
         Utils.Base_Classes.User user = UserManager.loggedUser;
 
         AccountPanel ap;
-        AccountMenu menu;
+        
         ListPanel lp;
 
         CustomPictureBox urun_ekle = new CustomPictureBox();
@@ -28,7 +28,6 @@ namespace Marketing.Panels
         public Main_Panel()
         {
             ap = new AccountPanel();
-            menu = new AccountMenu();
             lp = new ListPanel();
         }
 
@@ -47,12 +46,8 @@ namespace Marketing.Panels
             panel.Dock = DockStyle.Fill;
 
             ap.InitializeComponents(size);
-            menu.InitializeComponents(ap.GetPanel().Size);
             lp.InitializeComponents(size);
 
-            Control _menu = menu.GetPanel();
-            _menu.Visible = false;
-            _menu.Location = new Point(ap.GetPanel().Location.X, ap.GetPanel().Location.Y + ap.GetPanel().Size.Height);
 
             urun_ekle.Size = new Size((int)(size.Width * 0.05), (int)(size.Width * 0.05));
             urun_ekle.Location = new Point((size.Width / 2) - (urun_ekle.Size.Width * 2 / 2 - 10), lp.GetPanel().Location.Y + lp.GetPanel().Size.Height);
@@ -77,7 +72,6 @@ namespace Marketing.Panels
             odeme.Click += Button_Click;
 
             panel.Controls.Add(ap.GetPanel());
-            panel.Controls.Add(_menu);
             panel.Controls.Add(lp.GetPanel());
             panel.Controls.Add(urun_ekle);
             panel.Controls.Add(odeme);

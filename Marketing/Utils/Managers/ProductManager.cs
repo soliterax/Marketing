@@ -59,6 +59,12 @@ namespace Marketing.Utils.Managers
             }
         }
 
+        public static void RemoveProduct(Product product)
+        {
+            SoliteraxFile file = new SoliteraxFile(path + "/" + product.product_Id.ToString() + ".product");
+            //RemoveFile add library
+        }
+
         public static void SaveProduct(Product product)
         {
             SoliteraxFile file = new SoliteraxFile(path + "/" + product.product_Id.ToString() + ".product");

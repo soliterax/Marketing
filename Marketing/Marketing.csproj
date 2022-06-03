@@ -94,8 +94,13 @@
     <Compile Include="Panels\Sub_Panels\Account_Menu\Sub_Items\WorkerEdit.cs" />
     <Compile Include="Panels\Sub_Panels\Account_Menu\AccountPanel.cs" />
     <Compile Include="Panels\Sub_Panels\MainMenu\ListPanel.cs" />
+    <Compile Include="Panels\Sub_Panels\Products_Menu\ProductAddPanel.cs" />
     <Compile Include="Panels\Sub_Panels\Products_Menu\ProductList.cs" />
     <Compile Include="Panels\Sub_Panels\Products_Menu\Sub_Items\ProductListItem.cs" />
+    <Compile Include="Panels\Sub_Panels\Workers_Menu\Sub_Items\WorkerListItem.cs" />
+    <Compile Include="Panels\Sub_Panels\Workers_Menu\WorkerAddPanel.cs" />
+    <Compile Include="Panels\Sub_Panels\Workers_Menu\WorkerList.cs" />
+    <Compile Include="Panels\WorkersPanel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Base_Classes\Cart.cs" />
@@ -106,6 +111,7 @@
     <Compile Include="Utils\Interfaces\ManagerTemplate.cs" />
     <Compile Include="Utils\Interfaces\PanelTemplate.cs" />
     <Compile Include="Utils\Managers\CategoryManager.cs" />
+    <Compile Include="Utils\Managers\EncryptionManager.cs" />
     <Compile Include="Utils\Managers\HistoryManager.cs" />
     <Compile Include="Utils\Managers\PermissionManager.cs" />
     <Compile Include="Utils\Managers\ProductManager.cs" />
@@ -153,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-basket-96.ico" />
+    <None Include="Resources\BackButton.png" />
     <None Include="Resources\successfulPictureButton.png" />
     <None Include="Resources\RemovePictureButton.png" />
     <None Include="Resources\editPictureButton.png" />
@@ -179,8 +186,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

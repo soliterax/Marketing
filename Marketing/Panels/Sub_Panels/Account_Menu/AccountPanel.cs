@@ -16,6 +16,8 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         User user = UserManager.loggedUser;
 
+        AccountMenu menu = new AccountMenu();
+
         Panel panel = new Panel();
         PictureBox accountPhoto = new PictureBox();
         Label nameText = new Label();
@@ -67,6 +69,13 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
             titleText.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
             titleText.Click += Panel_Click;
 
+            menu.InitializeComponents(panel.Size);
+            Control _menu = menu.GetPanel();
+            _menu.Visible = false;
+            _menu.Location =new Point(panel.Location.X, panel.Location.Y + panel.Size.Height);
+            _menu.BringToFront();
+
+            Application.OpenForms[0].Controls.Add(_menu);
             panel.Controls.Add(accountPhoto);
             panel.Controls.Add(nameText);
             panel.Controls.Add(titleText);
@@ -74,7 +83,7 @@ namespace Marketing.Panels.Sub_Panels.Account_Menu
 
         private void Panel_Click(object sender, EventArgs e)
         {
-            Application.OpenForms[0].Controls[1].Controls[1].Visible = (Application.OpenForms[0].Controls[1].Controls[1].Visible == true) ? false : true;
+            menu.GetPanel().Visible = (menu.GetPanel().Visible == true) ? false : true;
             GC.Collect();
         }
 
